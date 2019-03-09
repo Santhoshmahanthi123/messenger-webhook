@@ -1,10 +1,13 @@
 "use strict";
+require("dotenv").config();
 
 // Imports dependencies and set up http server
 const express = require("express"),
   bodyParser = require("body-parser"),
   app = express().use(bodyParser.json()); // creates express http server
 const request = require("request");
+const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+
 // Creates the endpoint for our webhook
 app.post("/webhook", (req, res) => {
   // Parse the request body from the POST
