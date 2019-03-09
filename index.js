@@ -4,11 +4,11 @@
 const express = require("express"),
   bodyParser = require("body-parser"),
   app = express().use(bodyParser.json()); // creates express http server
+const request = require("request");
 // Creates the endpoint for our webhook
 app.post("/webhook", (req, res) => {
   // Parse the request body from the POST
   let body = req.body;
-  const request = require("request");
 
   // Check the webhook event is from a Page subscription
   if (body.object === "page") {
