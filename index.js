@@ -89,10 +89,11 @@ function handlePostback(sender_psid, received_postback) {}
 function callSendAPI(sender_psid, response) {
   // Construct the message body
   let request_body = {
-    "recipient": {
-      "id": sender_psid
+    recipient: {
+      id: sender_psid
     },
-    "message": response
+    message: response
+  };
 }
 
 // Sets server port and logs message on success
