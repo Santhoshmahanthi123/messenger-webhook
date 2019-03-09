@@ -8,6 +8,7 @@ const express = require("express"),
 app.post("/webhook", (req, res) => {
   // Parse the request body from the POST
   let body = req.body;
+  const request = require("request");
 
   // Check the webhook event is from a Page subscription
   if (body.object === "page") {
@@ -94,6 +95,23 @@ function callSendAPI(sender_psid, response) {
     },
     message: response
   };
+
+  // Send the HTTP request to the Messenger Platform
+  request(
+    {
+      uri: "https://graph.facebook.com/v2.6/me/messages",
+      qs: { access_token: PAGE_ACCESS_TOKEN },
+      method: "POST",
+      json: request_body
+    },
+    (err, res, body) => {
+      if (!err) {
+        console.log("message sent!");
+      } else {
+        console.error("Unable to send message:" + err);
+      }
+    }
+  );
 }
 
 // Sets server port and logs message on success
