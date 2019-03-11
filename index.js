@@ -161,20 +161,20 @@ function callSendAPI(sender_psid, response) {
     }
   );
 }
-function firstEntity(nlp, name) {
-  return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
-}
+// function firstEntity(nlp, name) {
+//   return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
+// }
 
-function handleMessage(message) {
-  // check greeting is here and is confident
-  const greeting = firstEntity(message.nlp, 'greetings');
-  if (greeting && greeting.confidence > 0.8) {
-    sendResponse('Hi there!');
-  } else { 
-    // default logic
-    sendResponse('Oops sorry we didn't get you!');
-  }
-}
+// function handleMessage(message) {
+//   // check greeting is here and is confident
+//   const greeting = firstEntity(message.nlp, 'greetings');
+//   if (greeting && greeting.confidence > 0.8) {
+//     sendResponse('Hi there!');
+//   } else {
+//     // default logic
+//     sendResponse('Oops sorry we didn't get you!');
+//   }
+// }
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log("webhook is listening"));
