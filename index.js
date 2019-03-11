@@ -80,7 +80,8 @@ function handleMessage(message) {
     sendResponse("Hi there!");
   } else {
     // default logic
-    sendResponse("Oops we didnt get you please provide valid input!");
+    // sendResponse("Oops we didnt get you please provide valid input!");
+    console.log("enter a valid input ");
   }
 }
 
