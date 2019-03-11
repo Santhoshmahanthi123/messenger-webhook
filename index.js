@@ -6,6 +6,7 @@ const express = require("express"),
   bodyParser = require("body-parser"),
   app = express().use(bodyParser.json()); // creates express http server
 const request = require("request");
+const node_wit = require("node-wit");
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
 // Creates the endpoint for our webhook
@@ -23,7 +24,7 @@ app.post("/webhook", (req, res) => {
       // console.log(webhook_event);
 
       // Gets the body of the webhook event
-      let webhook_event = entry.messaging[0];
+      let webhook_event = entry.msessaging[0];
       console.log(webhook_event);
 
       // Get the sender PSID
@@ -69,53 +70,53 @@ app.get("/webhook", (req, res) => {
   }
 });
 // Handles messages events
-function handleMessage(sender_psid, received_message) {
-  let response;
+// function handleMessage(sender_psid, received_message) {
+//   let response;
 
-  // Checks if the message contains text
-  if (received_message.text) {
-    // Create the payload for a basic text message, which
-    // will be added to the body of our request to the Send API
-    response = {
-      text: `You sent the message: "${
-        received_message.text
-      }". Now send me an attachment!`
-    };
-  } else if (received_message.attachments) {
-    // Get the URL of the message attachment
-    let attachment_url = received_message.attachments[0].payload.url;
-    response = {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "generic",
-          elements: [
-            {
-              title: "Is this the right picture?",
-              subtitle: "Tap a button to answer.",
-              image_url: attachment_url,
-              buttons: [
-                {
-                  type: "postback",
-                  title: "Yes!",
-                  payload: "yes"
-                },
-                {
-                  type: "postback",
-                  title: "No!",
-                  payload: "no"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    };
-  }
+//   // Checks if the message contains text
+//   if (received_message.text) {
+//     // Create the payload for a basic text message, which
+//     // will be added to the body of our request to the Send API
+//     response = {
+//       text: `You sent the message: "${
+//         received_message.text
+//       }". Now send me an attachment!`
+//     };
+//   } else if (received_message.attachments) {
+//     // Get the URL of the message attachment
+//     let attachment_url = received_message.attachments[0].payload.url;
+//     response = {
+//       attachment: {
+//         type: "template",
+//         payload: {
+//           template_type: "generic",
+//           elements: [
+//             {
+//               title: "Is this the right picture?",
+//               subtitle: "Tap a button to answer.",
+//               image_url: attachment_url,
+//               buttons: [
+//                 {
+//                   type: "postback",
+//                   title: "Yes!",
+//                   payload: "yes"
+//                 },
+//                 {
+//                   type: "postback",
+//                   title: "No!",
+//                   payload: "no"
+//                 }
+//               ]
+//             }
+//           ]
+//         }
+//       }
+//     };
+//   }
 
-  // Send the response message
-  callSendAPI(sender_psid, response);
-}
+//   // Send the response message
+//   callSendAPI(sender_psid, response);
+// }
 
 // Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
@@ -161,20 +162,21 @@ function callSendAPI(sender_psid, response) {
     }
   );
 }
-// function firstEntity(nlp, name) {
-//   return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
-// }
+function firstEntity(nlp, name) {
+  return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
+}
 
-// function handleMessage(message) {
-//   // check greeting is here and is confident
-//   const greeting = firstEntity(message.nlp, 'greetings');
-//   if (greeting && greeting.confidence > 0.8) {
-//     sendResponse('Hi there!');
-//   } else {
-//     // default logic
-//     sendResponse('Oops sorry we didn't get you!');
-//   }
-// }
+function handleMessage(message) {
+  // check greeting is here and is confident
+  const greeting = firstEntity(message.nlp, "greetings");
+  if (greeting && greeting.confidence > 0.8) {
+    sendResponse("Hi there!");
+  } else {
+    // // default logic
+    // sendResponse('Oops sorry we didn't get you!');
+    console.log("please  valid input");
+  }
+}
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log("webhook is listening"));
