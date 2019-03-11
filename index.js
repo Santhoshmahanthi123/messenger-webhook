@@ -6,7 +6,6 @@ const express = require("express"),
   bodyParser = require("body-parser"),
   app = express().use(bodyParser.json()); // creates express http server
 const request = require("request");
-// const node_wit = require("node-wit");
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
 // Creates the endpoint for our webhook
@@ -24,7 +23,7 @@ app.post("/webhook", (req, res) => {
       // console.log(webhook_event);
 
       // Gets the body of the webhook event
-      let webhook_event = entry.msessaging[0];
+      let webhook_event = entry.messaging[0];
       console.log(webhook_event);
 
       // Get the sender PSID
@@ -131,7 +130,7 @@ function handlePostback(sender_psid, received_postback) {
   } else if (payload === "no") {
     response = { text: "Oops, try sending another image." };
   }
-  // Send the message to acknowledge the postbackw
+  // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
 }
 
@@ -162,20 +161,6 @@ function callSendAPI(sender_psid, response) {
     }
   );
 }
-// function firstEntity(nlp, name) {
-//   return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
-// }
-
-// function handleMessage(message) {
-//   // check greeting is here and is confident
-//   const greeting = firstEntity(message.nlp, "greetings");
-//   if (greeting && greeting.confidence > 0.8) {
-//     sendResponse("Hi there!");
-//   } else {
-//     // default logic
-//     console.log("enter a valid input");
-//   }
-// }
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log("webhook is listening"));
