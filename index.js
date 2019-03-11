@@ -24,7 +24,7 @@ app.post("/webhook", (req, res) => {
       // console.log(webhook_event);
 
       // Gets the body of the webhook event
-      let webhook_event = entry.msessaging[0];
+      let webhook_event = entry.msessaging;
       console.log(webhook_event);
 
       // Get the sender PSID
