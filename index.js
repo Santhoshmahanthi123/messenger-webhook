@@ -82,7 +82,7 @@ function handleMessage(sender_psid, received_message) {
   //     }". Now send me an attachment!`
   //   };
   // }
-  if (received_message.text | received_message.attachment) {
+  if (received_message.text) {
     // Get the URL of the message attachment
     // let attachment_url = received_message.attachments[0].payload.url;
     response = {
@@ -117,11 +117,35 @@ function handleMessage(sender_psid, received_message) {
         }
       }
     };
-  } else if (received_message.other) {
-    // Create the payload for a basic text message, which
-    // will be added to the body of our request to the Send API
+  } else if (received_message.attachment) {
+    // Get the URL of the message attachment
+    let attachment_url = received_message.attachments[0].payload.url;
     response = {
-      text: `Hey there Welcome to Flying Sphaghetti Monster! Please send any text to start the conversation!`
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "generic",
+          elements: [
+            {
+              title: "What this picture is about?",
+              subtitle: "Tap a button to answer.",
+              image_url: attachment_url,
+              buttons: [
+                {
+                  type: "postback",
+                  title: "Walkin!",
+                  payload: "yes"
+                },
+                {
+                  type: "postback",
+                  title: "Table reservation!",
+                  payload: "yeah"
+                }
+              ]
+            }
+          ]
+        }
+      }
     };
   }
 
@@ -142,6 +166,10 @@ function handlePostback(sender_psid, received_postback) {
     response = { text: "You have opted for Reservation!." };
   } else if (payload === "C") {
     response = { text: "You have opted for Feed back!" };
+  } else if (payload === "yes") {
+    response = { text: "You have opted for walkin!" };
+  } else if (payload === "yeah") {
+    response = { text: "You have opted for reservation!" };
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
