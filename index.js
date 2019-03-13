@@ -82,9 +82,9 @@ function handleMessage(sender_psid, received_message) {
   //     }". Now send me an attachment!`
   //   };
   // }
-  if (received_message.attachments || received_message.text) {
+  if (received_message.text) {
     // Get the URL of the message attachment
-    let attachment_url = received_message.attachments[0].payload.url;
+    // let attachment_url = received_message.attachments[0].payload.url;
     response = {
       attachment: {
         type: "template",
@@ -94,7 +94,7 @@ function handleMessage(sender_psid, received_message) {
             {
               title: "Welcome to Flying Sphaghetti Monster Restaurant!",
               subtitle: "Choose any of the options below.",
-              image_url: attachment_url,
+              // image_url: attachment_url,
               buttons: [
                 {
                   type: "postback",
@@ -117,11 +117,11 @@ function handleMessage(sender_psid, received_message) {
         }
       }
     };
-  } else {
+  } else if (received_message.attachment) {
     // Create the payload for a basic text message, which
     // will be added to the body of our request to the Send API
     response = {
-      text: `Hey there Welcome to Flying Sphaghetti Monster! Please send any photo to start the conversation`
+      text: `Hey there Welcome to Flying Sphaghetti Monster! Please send any text to start the conversation!`
     };
   }
 
