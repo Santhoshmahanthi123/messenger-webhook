@@ -120,9 +120,9 @@ function handleMessage(sender_psid, received_message) {
         }
       }
     };
-  } else if (received_message.attachment) {
+  } else if (received_message.attachments) {
+    // Get the URL of the message attachment
     let attachment_url = received_message.attachments[0].payload.url;
-
     response = {
       attachment: {
         type: "template",
@@ -130,8 +130,8 @@ function handleMessage(sender_psid, received_message) {
           template_type: "generic",
           elements: [
             {
-              title: "Please enter a valid text to continue!",
-              subtitle: "Did you get this? .",
+              title: "Is this the right picture?",
+              subtitle: "Tap a button to answer.",
               image_url: attachment_url,
               buttons: [
                 {
@@ -141,7 +141,7 @@ function handleMessage(sender_psid, received_message) {
                 },
                 {
                   type: "postback",
-                  title: "Nah!",
+                  title: "No!",
                   payload: "no"
                 }
               ]
@@ -274,7 +274,36 @@ function handlePostback(sender_psid, received_postback) {
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
 }
+//handling second postbcks
+function handleSecondPostback(sender_psid, received_postback) {
+  let response;
 
+  // Get the payload for the postback
+  let payload = received_postback.payload;
+
+  // Set the response based on the postback payload
+  if (payload === "a") {
+    response = { text: "Thanks your walkin is confirmed at 4 PM!" };
+  } else if (payload === "b") {
+    response = { text: "Thanks your walkin is confirmed at 5 PM!" };
+  } else if (payload === "c") {
+    response = { text: "Thanks your walkin is confirmed at 6 PM!" };
+  } else if (payload === "d") {
+    response = { text: "Thanks your table is reserved for 7 PM!" };
+  } else if (payload === "e") {
+    response = { text: "Thanks your table is reserved for 8 PM!" };
+  } else if (payload === "f") {
+    response = { text: "Thanks your table is reserved for 9 PM!" };
+  } else if (payload === "g") {
+    response = { text: "Thanks for your valuable feed back!" };
+  } else if (payload === "h") {
+    response = { text: "Thanks for your valuable feed back!" };
+  } else if (payload === "i") {
+    response = { text: "Thanks for your valuable feed back!" };
+  }
+  // Send the message to acknowledge the postback
+  callSendAPI(sender_psid, response);
+}
 // Sends response messages via the Send API
 function callSendAPI(sender_psid, response) {
   // Construct the message body
