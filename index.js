@@ -163,11 +163,107 @@ function handlePostback(sender_psid, received_postback) {
   let payload = received_postback.payload;
 
   if (payload === "A") {
-    response = { text: "You have opted for Walkins!!" };
+    // response = { text: "You have opted for Walkins!!" };
+    response = {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "generic",
+          elements: [
+            {
+              title: "Welcome to Flying Sphaghetti Monster Restaurant!",
+              subtitle: "Choose any of the options below.",
+
+              buttons: [
+                {
+                  type: "postback",
+                  title: "Walkin!",
+                  payload: "A"
+                },
+                {
+                  type: "postback",
+                  title: "Reserve table!",
+                  payload: "B"
+                },
+                {
+                  type: "postback",
+                  title: "Feed back!",
+                  payload: "C"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    };
   } else if (payload === "B") {
-    response = { text: "You have opted for Reservation!." };
+    // response = { text: "You have opted for Reservation!." };
+    response = {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "generic",
+          elements: [
+            {
+              title: "Welcome to Flying Sphaghetti Monster Restaurant!",
+              subtitle: "Choose any of the options below.",
+
+              buttons: [
+                {
+                  type: "postback",
+                  title: "Walkin!",
+                  payload: "A"
+                },
+                {
+                  type: "postback",
+                  title: "Reserve table!",
+                  payload: "B"
+                },
+                {
+                  type: "postback",
+                  title: "Feed back!",
+                  payload: "C"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    };
   } else if (payload === "C") {
-    response = { text: "You have opted for Feed back!" };
+    // response = { text: "You have opted for Feed back!" };
+    response = {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "generic",
+          elements: [
+            {
+              title: "Welcome to Flying Sphaghetti Monster Restaurant!",
+              subtitle: "Choose any of the options below.",
+
+              buttons: [
+                {
+                  type: "postback",
+                  title: "Walkin!",
+                  payload: "A"
+                },
+                {
+                  type: "postback",
+                  title: "Reserve table!",
+                  payload: "B"
+                },
+                {
+                  type: "postback",
+                  title: "Feed back!",
+                  payload: "C"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    };
   } else if (payload === "yes") {
     response = { text: "Hope you enter a valid text now!" };
   } else if (payload === "no") {
