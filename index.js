@@ -6,7 +6,10 @@ const express = require("express"),
   bodyParser = require("body-parser"),
   app = express().use(bodyParser.json()); // creates express http server
 const request = require("request");
+const path = require("path");
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+
+app.use("/public", express.static(path.join(__dirname, "public")));
 
 // Creates the endpoint for our webhook
 app.post("/webhook", (req, res) => {
@@ -84,8 +87,8 @@ function handleMessage(sender_psid, received_message) {
   //   };
   // }
   if (received_message.text) {
-    // Get the URL of the message attachment
-    // let attachment_url = received_message.attachments[0].payload.url;
+    // Get the URL of the message attachments
+
     response = {
       attachment: {
         type: "template",
@@ -95,7 +98,7 @@ function handleMessage(sender_psid, received_message) {
             {
               title: "Welcome to Flying Sphaghetti Monster Restaurant!",
               subtitle: "Choose any of the options below.",
-              // image_url: attachment_url,
+
               buttons: [
                 {
                   type: "postback",
@@ -119,34 +122,8 @@ function handleMessage(sender_psid, received_message) {
       }
     };
   } else if (received_message.attachment) {
-    // Get the URL of the message attachment
-    let attachment_url = received_message.attachments[0].payload.url;
-    output = {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "generic",
-          elements: [
-            {
-              title: "What this picture is about?",
-              subtitle: "Tap a button to answer.",
-              image_url: attachment_url,
-              buttons: [
-                {
-                  type: "postback",
-                  title: "Walkin!",
-                  payload: "yes"
-                },
-                {
-                  type: "postback",
-                  title: "Table reservation!",
-                  payload: "yeah"
-                }
-              ]
-            }
-          ]
-        }
-      }
+    response = {
+      text: "Please enter a valid text to start converstion!"
     };
   }
 
