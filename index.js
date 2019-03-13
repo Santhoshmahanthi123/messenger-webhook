@@ -171,24 +171,24 @@ function handlePostback(sender_psid, received_postback) {
           template_type: "generic",
           elements: [
             {
-              title: "Welcome to Flying Sphaghetti Monster Restaurant!",
-              subtitle: "Choose any of the options below.",
+              title: "you have choosen for walkin!",
+              subtitle: "please choose these available walkins!.",
 
               buttons: [
                 {
                   type: "postback",
-                  title: "Walkin!",
-                  payload: "A"
+                  title: "4 PM",
+                  payload: "a"
                 },
                 {
                   type: "postback",
-                  title: "Reserve table!",
-                  payload: "B"
+                  title: "5 PM",
+                  payload: "b"
                 },
                 {
                   type: "postback",
-                  title: "Feed back!",
-                  payload: "C"
+                  title: "6 PM",
+                  payload: "c"
                 }
               ]
             }
@@ -205,24 +205,24 @@ function handlePostback(sender_psid, received_postback) {
           template_type: "generic",
           elements: [
             {
-              title: "Welcome to Flying Sphaghetti Monster Restaurant!",
-              subtitle: "Choose any of the options below.",
+              title: "you have choosen for reservation!",
+              subtitle: "please choose these available reservations!",
 
               buttons: [
                 {
                   type: "postback",
-                  title: "Walkin!",
-                  payload: "A"
+                  title: "7 PM",
+                  payload: "d"
                 },
                 {
                   type: "postback",
-                  title: "Reserve table!",
-                  payload: "B"
+                  title: "8 PM",
+                  payload: "e"
                 },
                 {
                   type: "postback",
-                  title: "Feed back!",
-                  payload: "C"
+                  title: "9 PM",
+                  payload: "f"
                 }
               ]
             }
@@ -239,24 +239,24 @@ function handlePostback(sender_psid, received_postback) {
           template_type: "generic",
           elements: [
             {
-              title: "Welcome to Flying Sphaghetti Monster Restaurant!",
-              subtitle: "Choose any of the options below.",
+              title: "Thanks for choosing for feed back!",
+              subtitle: "Please select below buttons for feed back",
 
               buttons: [
                 {
                   type: "postback",
-                  title: "Walkin!",
-                  payload: "A"
+                  title: "Best!",
+                  payload: "g"
                 },
                 {
                   type: "postback",
-                  title: "Reserve table!",
-                  payload: "B"
+                  title: "Good!",
+                  payload: "h"
                 },
                 {
                   type: "postback",
-                  title: "Feed back!",
-                  payload: "C"
+                  title: "Average!",
+                  payload: "i"
                 }
               ]
             }
