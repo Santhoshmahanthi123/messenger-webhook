@@ -74,7 +74,6 @@ app.get("/webhook", (req, res) => {
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
   let response;
-  let output;
 
   // Checks if the message contains text
   // if (received_message.text ) {
@@ -122,11 +121,36 @@ function handleMessage(sender_psid, received_message) {
       }
     };
   } else if (received_message.attachment) {
+    let attachment_url = received_message.attachments[0].payload.url;
+
     response = {
-      text: "Please enter a valid text to start converstion!"
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "generic",
+          elements: [
+            {
+              title: "Please enter a valid text to continue!",
+              subtitle: "Did you get this? .",
+              image_url: attachment_url,
+              buttons: [
+                {
+                  type: "postback",
+                  title: "Yes!",
+                  payload: "yes"
+                },
+                {
+                  type: "postback",
+                  title: "Nah!",
+                  payload: "no"
+                }
+              ]
+            }
+          ]
+        }
+      }
     };
   }
-
   // Send the response message
   callSendAPI(sender_psid, response);
 }
@@ -145,9 +169,11 @@ function handlePostback(sender_psid, received_postback) {
   } else if (payload === "C") {
     response = { text: "You have opted for Feed back!" };
   } else if (payload === "yes") {
-    response = { text: "You have opted for walkin!" };
-  } else if (payload === "yeah") {
-    response = { text: "You have opted for reservation!" };
+    response = { text: "Hope you enter a valid text now!" };
+  } else if (payload === "no") {
+    response = {
+      text: "Please enter a valid text in the text feld and press enter!"
+    };
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
