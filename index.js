@@ -10,7 +10,6 @@ const path = require("path");
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
 app.use("/public", express.static(path.join(__dirname, "public")));
-
 // Creates the endpoint for our webhook
 app.post("/webhook", (req, res) => {
   // Parse the request body from the POST
