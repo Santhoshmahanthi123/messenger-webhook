@@ -82,7 +82,7 @@ function handleMessage(sender_psid, received_message) {
   //     }". Now send me an attachment!`
   //   };
   // }
-  if (received_message.text) {
+  if (received_message.text | received_message.attachment) {
     // Get the URL of the message attachment
     // let attachment_url = received_message.attachments[0].payload.url;
     response = {
@@ -117,7 +117,7 @@ function handleMessage(sender_psid, received_message) {
         }
       }
     };
-  } else if (received_message.attachment) {
+  } else if (received_message.other) {
     // Create the payload for a basic text message, which
     // will be added to the body of our request to the Send API
     response = {
