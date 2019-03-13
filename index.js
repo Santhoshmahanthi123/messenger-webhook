@@ -121,6 +121,7 @@ function handleMessage(sender_psid, received_message) {
   } else if (received_message.attachments) {
     // Get the URL of the message attachment
 
+    let attachment_url = received_message.attachments[0].payload.url;
     response = {
       attachment: {
         type: "template",
@@ -128,27 +129,19 @@ function handleMessage(sender_psid, received_message) {
           template_type: "generic",
           elements: [
             {
-              title: "Is this the right picture?",
+              title: "What this picture is for?",
               subtitle: "Tap a button to answer.",
-              image_url:
-                "https://content3.jdmagicbox.com/comp/hyderabad/h5/040pxx40.xx40.140516124003.h3h5/catalogue/flying-spaghetti-monster-restaurant-jubilee-hills-hyderabad-home-delivery-restaurants-p6kmmr.jpg",
-              default_action: {
-                type: "web_url",
-                url:
-                  "https://content3.jdmagicbox.com/comp/hyderabad/h5/040pxx40.xx40.140516124003.h3h5/catalogue/flying-spaghetti-monster-restaurant-jubilee-hills-hyderabad-home-delivery-restaurants-p6kmmr.jpg",
-
-                webview_height_ratio: "tall"
-              },
+              image_url: attachment_url,
               buttons: [
                 {
                   type: "postback",
-                  title: "Yes!",
+                  title: "Review!",
                   payload: "yes"
                 },
                 {
                   type: "postback",
-                  title: "No!",
-                  payload: "no"
+                  title: "Suggestion!",
+                  payload: "yeah"
                 }
               ]
             }
@@ -314,6 +307,12 @@ function handlePostback(sender_psid, received_postback) {
     response = { text: "Thanks for your valuable feed back!" };
   } else if (payload === "i") {
     response = { text: "Thanks for your valuable feed back!" };
+  }
+  } else if (payload === "yes") {
+    response = { text: "Thanks for your response we will review it. Please feel free to chat with us!" };
+  }
+  } else if (payload === "yeah") {
+    response = { text: "Thanks for your suggestion. Please feel free to chat with us!" };
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
