@@ -138,107 +138,12 @@ function handlePostback(sender_psid, received_postback) {
   // Get the payload for the postback
   let payload = received_postback.payload;
 
-  // Set the response based on the postback payload
   if (payload === "A") {
-    response = {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "generic",
-          elements: [
-            {
-              title: "Welcome to Flying Sphaghetti Monster Restaurant!",
-              subtitle: "Select the time of your convinience for walkin!.",
-              image_url: attachment_url,
-              buttons: [
-                {
-                  type: "postback",
-                  title: "4 PM",
-                  payload: "D"
-                },
-                {
-                  type: "postback",
-                  title: "5 PM",
-                  payload: "E"
-                },
-                {
-                  type: "postback",
-                  title: "6 PM",
-                  payload: "F"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    };
+    response = { text: "You have opted for Walkins!!" };
   } else if (payload === "B") {
-    response = {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "generic",
-          elements: [
-            {
-              title: "Welcome to Flying Sphaghetti Monster Restaurant!",
-              subtitle:
-                "Select the time of your convinience for reserving your table!.",
-              image_url: attachment_url,
-              buttons: [
-                {
-                  type: "postback",
-                  title: "7 PM",
-                  payload: "G"
-                },
-                {
-                  type: "postback",
-                  title: "8 PM",
-                  payload: "H"
-                },
-                {
-                  type: "postback",
-                  title: "9 PM",
-                  payload: "I"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    };
+    response = { text: "You have opted for Reservation!." };
   } else if (payload === "C") {
-    response = {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "generic",
-          elements: [
-            {
-              title: "Welcome to Flying Sphaghetti Monster Restaurant!",
-              subtitle: "Give Us Rating by opting below options!",
-              image_url: attachment_url,
-              buttons: [
-                {
-                  type: "postback",
-                  title: "Best!",
-                  payload: "J"
-                },
-                {
-                  type: "postback",
-                  title: "Better!",
-                  payload: "K"
-                },
-                {
-                  type: "postback",
-                  title: "Good!",
-                  payload: "L"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    };
+    response = { text: "You have opted for Feed back!" };
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
