@@ -307,12 +307,15 @@ function handlePostback(sender_psid, received_postback) {
     response = { text: "Thanks for your valuable feed back!" };
   } else if (payload === "i") {
     response = { text: "Thanks for your valuable feed back!" };
-  }
   } else if (payload === "yes") {
-    response = { text: "Thanks for your response we will review it. Please feel free to chat with us!" };
-  }
+    response = {
+      text:
+        "Thanks for your response we will review it. Please feel free to chat with us!"
+    };
   } else if (payload === "yeah") {
-    response = { text: "Thanks for your suggestion. Please feel free to chat with us!" };
+    response = {
+      text: "Thanks for your suggestion. Please feel free to chat with us!"
+    };
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
