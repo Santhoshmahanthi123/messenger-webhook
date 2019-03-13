@@ -84,7 +84,7 @@ function handleMessage(sender_psid, received_message) {
   // }
   if (received_message.attachments) {
     // Get the URL of the message attachment
-    let attachment_url = https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwiej4vW1v7gAhWaiXAKHZsjBxEQjRx6BAgBEAU&url=https%3A%2F%2Fwww.justdial.com%2FHyderabad%2FFlying-Spaghetti-Monster-Restaurant-Beside-Blue-Cross-Neerus-Emporio-Jubilee-Hills%2F040PXX40-XX40-140516124003-H3H5_BZDET%2Fphotos&psig=AOvVaw3VIE6wXU9A4x_hhnKYlogC&ust=1552551356169288;
+    let attachment_url = received_message.attachments[0].payload.url;
     response = {
       attachment: {
         type: "template",
