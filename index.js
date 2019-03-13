@@ -87,8 +87,15 @@ function handleMessage(sender_psid, received_message) {
             {
               title: "Welcome to Flying Sphaghetti Monster Restaurant!",
               subtitle: "Choose any of the options below.",
-              image_url: "./public/fsm.jpg",
+              image_url:
+                "https://content3.jdmagicbox.com/comp/hyderabad/h5/040pxx40.xx40.140516124003.h3h5/catalogue/flying-spaghetti-monster-restaurant-jubilee-hills-hyderabad-home-delivery-restaurants-p6kmmr.jpg",
+              default_action: {
+                type: "web_url",
+                url:
+                  "https://content3.jdmagicbox.com/comp/hyderabad/h5/040pxx40.xx40.140516124003.h3h5/catalogue/flying-spaghetti-monster-restaurant-jubilee-hills-hyderabad-home-delivery-restaurants-p6kmmr.jpg",
 
+                webview_height_ratio: "tall"
+              },
               buttons: [
                 {
                   type: "postback",
@@ -123,7 +130,15 @@ function handleMessage(sender_psid, received_message) {
             {
               title: "Is this the right picture?",
               subtitle: "Tap a button to answer.",
-              image_url: "./public/fsm.jpg",
+              image_url:
+                "https://content3.jdmagicbox.com/comp/hyderabad/h5/040pxx40.xx40.140516124003.h3h5/catalogue/flying-spaghetti-monster-restaurant-jubilee-hills-hyderabad-home-delivery-restaurants-p6kmmr.jpg",
+              default_action: {
+                type: "web_url",
+                url:
+                  "https://content3.jdmagicbox.com/comp/hyderabad/h5/040pxx40.xx40.140516124003.h3h5/catalogue/flying-spaghetti-monster-restaurant-jubilee-hills-hyderabad-home-delivery-restaurants-p6kmmr.jpg",
+
+                webview_height_ratio: "tall"
+              },
               buttons: [
                 {
                   type: "postback",
@@ -164,7 +179,15 @@ function handlePostback(sender_psid, received_postback) {
             {
               title: "you have choosen for walkin!",
               subtitle: "please choose these available walkins!.",
-              image_url: "./public/fsm.jpg",
+              image_url:
+                "https://content3.jdmagicbox.com/comp/hyderabad/h5/040pxx40.xx40.140516124003.h3h5/catalogue/flying-spaghetti-monster-restaurant-jubilee-hills-hyderabad-home-delivery-restaurants-p6kmmr.jpg",
+              default_action: {
+                type: "web_url",
+                url:
+                  "https://content3.jdmagicbox.com/comp/hyderabad/h5/040pxx40.xx40.140516124003.h3h5/catalogue/flying-spaghetti-monster-restaurant-jubilee-hills-hyderabad-home-delivery-restaurants-p6kmmr.jpg",
+
+                webview_height_ratio: "tall"
+              },
 
               buttons: [
                 {
@@ -199,7 +222,15 @@ function handlePostback(sender_psid, received_postback) {
             {
               title: "you have choosen for reservation!",
               subtitle: "please choose these available reservations!",
-              image_url: "./public/fsm.jpg",
+              image_url:
+                "https://content3.jdmagicbox.com/comp/hyderabad/h5/040pxx40.xx40.140516124003.h3h5/catalogue/flying-spaghetti-monster-restaurant-jubilee-hills-hyderabad-home-delivery-restaurants-p6kmmr.jpg",
+              default_action: {
+                type: "web_url",
+                url:
+                  "https://content3.jdmagicbox.com/comp/hyderabad/h5/040pxx40.xx40.140516124003.h3h5/catalogue/flying-spaghetti-monster-restaurant-jubilee-hills-hyderabad-home-delivery-restaurants-p6kmmr.jpg",
+
+                webview_height_ratio: "tall"
+              },
 
               buttons: [
                 {
@@ -234,8 +265,15 @@ function handlePostback(sender_psid, received_postback) {
             {
               title: "Thanks for choosing for feed back!",
               subtitle: "Please select below buttons for feed back",
-              image_url: "./public/fsm.jpg",
+              image_url:
+                "https://content3.jdmagicbox.com/comp/hyderabad/h5/040pxx40.xx40.140516124003.h3h5/catalogue/flying-spaghetti-monster-restaurant-jubilee-hills-hyderabad-home-delivery-restaurants-p6kmmr.jpg",
+              default_action: {
+                type: "web_url",
+                url:
+                  "https://content3.jdmagicbox.com/comp/hyderabad/h5/040pxx40.xx40.140516124003.h3h5/catalogue/flying-spaghetti-monster-restaurant-jubilee-hills-hyderabad-home-delivery-restaurants-p6kmmr.jpg",
 
+                webview_height_ratio: "tall"
+              },
               buttons: [
                 {
                   type: "postback",
