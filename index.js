@@ -1,15 +1,37 @@
 "use strict";
 require("dotenv").config();
-
 // Imports dependencies and set up http server
 const express = require("express"),
   bodyParser = require("body-parser"),
-  app = express().use(bodyParser.json());
+  app = express();
 const request = require("request");
 const path = require("path");
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
-
+const mongoose = require("mongoose");
+const question_controller = require("./controllers/question");
+const option_controller = require("./controllers/options");
+const answer_controller = require("./controllers/answers");
 app.use("/public", express.static(path.join(__dirname, "public")));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+mongoose.connect("mongodb://localhost:27017/messenger", {
+  useNewUrlParser: true
+});
+mongoose.Promise = global.Promise;
+
+// routes
+app.post("/question", question_controller.create_question);
+app.get("/question", question_controller.get_questions);
+app.delete("/question", question_controller.delete_question);
+app.patch("/question", question_controller.update_question);
+app.post("/option", option_controller.create_option);
+app.get("/option", option_controller.get_options);
+app.delete("/option", option_controller.delete_option);
+app.patch("/option", option_controller.update_option);
+app.post("/answer", answer_controller.post_answer);
+app.get("/answer", answer_controller.get_answers);
+app.delete("/answer", answer_controller.delete_answer);
+app.patch("/answer", answer_controller.update_option);
 // Creates the endpoint for our webhook
 app.post("/webhook", (req, res) => {
   // Parse the request body from the POST
@@ -162,6 +184,7 @@ function handlePostback(sender_psid, received_postback) {
 
   if (payload === "A") {
     // response = { text: "You have opted for Walkins!!" };
+
     response = {
       attachment: {
         type: "template",
@@ -349,4 +372,7 @@ function callSendAPI(sender_psid, response) {
 }
 
 // Sets server port and logs message on success
-app.listen(process.env.PORT || 1337, () => console.log("webhook is listening"));
+app.listen(process.env.PORT || 3000, () =>
+  console.log(`webhook is listening on port : 3000`)
+);
+module.exports = app;
