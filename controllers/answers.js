@@ -2,29 +2,7 @@ const Answer = require("../models/answer");
 const mongoose = require("mongoose");
 // const Questions = require("../models/question");
 const Options = require("../models/options");
-// exports.post_answer = (req, res) => {
-//   const answer = new Answer({
-//     _id: new mongoose.Types.ObjectId(),
-//     answer: req.body.answer,
-//     optionId: req.body.optionId
-//   });
-
-//   answer
-//     .save()
-//     .then(result => {
-//       console.log(result);
-//       res.status(200).json({
-//         message: "Answer posted!",
-//         postedAnswer: answer
-//       });
-//     })
-//     .catch(err => {
-//       console.log(err);
-//       res.status(500).json({
-//         error: err
-//       });
-//     });
-// };
+const Types = require("../models/types");
 exports.post_answer = (req, res) => {
   Options.find()
     .exec()
@@ -40,9 +18,25 @@ exports.post_answer = (req, res) => {
           console.log(result);
           options.map(option => {
             if (option.id == result.optionId) {
-              console.log("matched!");
+              // console.log("matched!");
+              Types.find()
+                .exec()
+                .then(display => {
+                  console.log(
+                    "Hey, Your answer is correct please choose one option below",
+                    display
+                  );
+                })
+                .catch(err => {
+                  console.log(err);
+                  res.status(500).json({
+                    error: err
+                  });
+                });
             } else {
-              console.log("not match!");
+              console.log(
+                "Your answer is not matching with the correct answer!"
+              );
             }
           });
 
@@ -69,7 +63,7 @@ exports.get_answers = (req, res) => {
   Answer.find()
     .then(result => {
       res.json({
-        totalOptions: result.length,
+        totalAnswers: result.length,
         message: "Available answers!",
         Answers: result
       });

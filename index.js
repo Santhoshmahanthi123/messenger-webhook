@@ -11,6 +11,7 @@ const mongoose = require("mongoose");
 const question_controller = require("./controllers/question");
 const option_controller = require("./controllers/options");
 const answer_controller = require("./controllers/answers");
+const type_controller = require("./controllers/types");
 app.use("/public", express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -18,7 +19,6 @@ mongoose.connect("mongodb://localhost:27017/messenger", {
   useNewUrlParser: true
 });
 mongoose.Promise = global.Promise;
-
 // routes
 app.post("/question", question_controller.create_question);
 app.get("/question", question_controller.get_questions);
@@ -32,11 +32,14 @@ app.post("/answer", answer_controller.post_answer);
 app.get("/answer", answer_controller.get_answers);
 app.delete("/answer", answer_controller.delete_answer);
 app.patch("/answer", answer_controller.update_option);
+app.post("/type", type_controller.create_type);
+app.get("/type", type_controller.get_types);
+app.delete("/type", type_controller.delete_type);
+app.patch("/type", type_controller.update_type);
 // Creates the endpoint for our webhook
 app.post("/webhook", (req, res) => {
   // Parse the request body from the POST
   let body = req.body;
-
   // Check the webhook event is from a Page subscription
   if (body.object === "page") {
     // Iterate over each entry - there may be multiple if batched
@@ -370,7 +373,6 @@ function callSendAPI(sender_psid, response) {
     }
   );
 }
-
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 3000, () =>
   console.log(`webhook is listening on port : 3000`)
