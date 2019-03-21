@@ -6,7 +6,6 @@ exports.create_option = (req, res) => {
     options: req.body.options,
     questionId: req.body.questionId
   });
-
   option
     .save()
     .then(result => {
@@ -23,6 +22,7 @@ exports.create_option = (req, res) => {
       });
     });
 };
+
 exports.get_options = (req, res) => {
   Option.find()
     .then(result => {
@@ -59,10 +59,8 @@ exports.update_option = (req, res) => {
   Option.updateMany(
     { _id: id },
     {
-      $set: {
-        option_1: req.body.option_1,
-        option_2: req.body.option_2,
-        option_3: req.body.option_3
+      $push: {
+        options: req.body.options
       }
     },
     { new: true }
