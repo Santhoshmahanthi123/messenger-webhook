@@ -2,9 +2,10 @@ const mongoose = require("mongoose");
 const typesSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
 
-  OptionId: {
+  optionId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Option"
+    ref: "Option",
+    required: true
   },
   type_1: {
     type: String,
