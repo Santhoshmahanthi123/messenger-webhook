@@ -9,6 +9,7 @@ const path = require("path");
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const mongoose = require("mongoose");
 const DBURL = process.env.DBURL;
+const port = process.env.PORT || 3000;
 const question_controller = require("./controllers/question");
 const option_controller = require("./controllers/options");
 const answer_controller = require("./controllers/answers");
@@ -375,7 +376,7 @@ function callSendAPI(sender_psid, response) {
   );
 }
 // Sets server port and logs message on success
-app.listen(process.env.PORT || 3000, () =>
-  console.log(`webhook is listening on port : 3000`)
-);
+app.listen(port, () => {
+  console.log(`webhook is listening on: ${port}`);
+});
 module.exports = app;
