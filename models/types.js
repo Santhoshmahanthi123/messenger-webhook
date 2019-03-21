@@ -4,7 +4,7 @@ const typesSchema = mongoose.Schema({
 
   OptionId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "OptionId"
+    ref: "Option"
   },
   type_1: {
     type: String,
