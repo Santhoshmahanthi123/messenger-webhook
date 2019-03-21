@@ -8,6 +8,7 @@ const request = require("request");
 const path = require("path");
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const mongoose = require("mongoose");
+const DBURL = process.env.DBURL;
 const question_controller = require("./controllers/question");
 const option_controller = require("./controllers/options");
 const answer_controller = require("./controllers/answers");
@@ -15,10 +16,10 @@ const type_controller = require("./controllers/types");
 app.use("/public", express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-mongoose.connect("mongodb://localhost:27017/messenger", {
+mongoose.connect(DBURL, {
   useNewUrlParser: true
 });
-mongoose.Promise = global.Promise;
+
 // routes
 app.post("/question", question_controller.create_question);
 app.get("/question", question_controller.get_questions);
