@@ -6,7 +6,7 @@ exports.create_type = (req, res) => {
     type_1: req.body.type_1,
     type_2: req.body.type_2,
     type_3: req.body.type_3,
-    answerId: req.body.answerId
+    optionId: req.body.optionId
   });
 
   type

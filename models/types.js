@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 const typesSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
 
-  answerId: {
+  OptionId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Answer"
+    ref: "OptionId"
   },
   type_1: {
     type: String,
