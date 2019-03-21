@@ -19,7 +19,7 @@ exports.post_answer = (req, res) => {
           options.map(option => {
             if (option.id == result.optionId) {
               // console.log("matched!");
-              Types.find()
+              Types.findById({ id: result.optionId })
                 .exec()
                 .then(display => {
                   console.log(
