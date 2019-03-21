@@ -106,7 +106,7 @@ function handleMessage(sender_psid, received_message) {
 
   if (received_message.text) {
     // Get the URL of the message attachments
-    Question.find()
+    var result = Question.find()
       .exec()
       .then(result => {
         console.log(result);
@@ -114,7 +114,7 @@ function handleMessage(sender_psid, received_message) {
       .catch(err => {
         console.log(err);
       });
-
+    console.log("@@@", result);
     response = {
       attachment: {
         type: "template",
