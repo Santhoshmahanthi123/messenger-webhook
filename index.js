@@ -14,6 +14,9 @@ const question_controller = require("./controllers/question");
 const option_controller = require("./controllers/options");
 const answer_controller = require("./controllers/answers");
 const type_controller = require("./controllers/types");
+const Question = require("./models/question");
+const Option = require("./models/options");
+const Type = require("./models/types");
 app.use("/public", express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -103,6 +106,14 @@ function handleMessage(sender_psid, received_message) {
 
   if (received_message.text) {
     // Get the URL of the message attachments
+    Question.find()
+      .exec()
+      .then(result => {
+        console.log(result);
+      })
+      .catch(err => {
+        console.log(err);
+      });
 
     response = {
       attachment: {
