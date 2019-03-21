@@ -385,7 +385,6 @@ function callSendAPI(sender_psid, response) {
     }
   );
 }
-
 app.post("/test", (req, res) => {
   var input = req.body.input;
   Option.find()

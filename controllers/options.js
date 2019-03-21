@@ -3,9 +3,7 @@ const mongoose = require("mongoose");
 exports.create_option = (req, res) => {
   const option = new Option({
     _id: new mongoose.Types.ObjectId(),
-    option_1: req.body.option_1,
-    option_2: req.body.option_2,
-    option_3: req.body.option_3,
+    options: req.body.options,
     questionId: req.body.questionId
   });
 

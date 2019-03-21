@@ -6,17 +6,11 @@ const optionsSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Question"
   },
-  option_1: {
-    type: String,
-    required: true
-  },
-  option_2: {
-    type: String,
-    required: true
-  },
-  option_3: {
-    type: String,
-    required: true
-  }
+  options: [
+    {
+      type: String,
+      required: true
+    }
+  ]
 });
 module.exports = mongoose.model("Option", optionsSchema);
