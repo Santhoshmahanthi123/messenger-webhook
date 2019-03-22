@@ -7,17 +7,7 @@ const typesSchema = mongoose.Schema({
     ref: "Option",
     required: true
   },
-  type_1: {
-    type: String,
-    required: true
-  },
-  type_2: {
-    type: String,
-    required: true
-  },
-  type_3: {
-    type: String,
-    required: true
-  }
+  option: { type: String, required: true },
+  types: [{ type: String, required: true }]
 });
 module.exports = mongoose.model("Type", typesSchema);

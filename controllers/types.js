@@ -3,12 +3,10 @@ const mongoose = require("mongoose");
 exports.create_type = (req, res) => {
   const type = new Type({
     _id: new mongoose.Types.ObjectId(),
-    type_1: req.body.type_1,
-    type_2: req.body.type_2,
-    type_3: req.body.type_3,
-    optionId: req.body.optionId
+    optionId: req.body.optionId,
+    option: req.body.option,
+    types: req.body.types
   });
-
   type
     .save()
     .then(result => {
@@ -61,10 +59,8 @@ exports.update_type = (req, res) => {
   Type.updateMany(
     { _id: id },
     {
-      $set: {
-        type_1: req.body.type_1,
-        type_2: req.body.type_2,
-        type_3: req.body.type_3
+      $push: {
+        types: req.body.types
       }
     },
     { new: true }

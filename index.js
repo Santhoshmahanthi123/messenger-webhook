@@ -386,29 +386,30 @@ function callSendAPI(sender_psid, response) {
   );
 }
 app.post("/test", (req, res) => {
-  var input = req.body.input;
-  Option.find()
+  const input = req.body.select;
+  Option.find({ _id: req.body.id })
     .exec()
     .then(result => {
-      result.map(option => {
-        if (option.id == input) {
-          result.map(answer => {
-            var selection = req.body.selection;
-            if (answer.id == input) {
-              console.log(answer);
-              if (answer.option_1 == selection) {
-                console.log(`you have selected:${answer.option_1}`);
-              }
-              if (answer.option_2 == selection) {
-                console.log(`you have selected:${answer.option_2}`);
-              }
-              if (answer.option_3 == selection) {
-                console.log(`you have selected:${answer.option_3}`);
-              }
-              return res.json({ matchedWith: answer });
-            }
-          });
-        }
+      res.json({ result: result });
+      result.map(options => {
+        console.log(options.options);
+        options.options.map(check => {
+          if (check == input) {
+            console.log(check);
+            Type.find()
+              .exec()
+              .then(type => {
+                type.map(types => {
+                  if (types.option == check) {
+                    console.log(types);
+                  }
+                });
+              })
+              .catch(err => {
+                console.log(err);
+              });
+          }
+        });
       });
     })
     .catch(err => {
