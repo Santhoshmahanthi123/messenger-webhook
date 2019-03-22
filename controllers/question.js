@@ -27,7 +27,7 @@ exports.get_questions = (req, res) => {
     .then(result => {
       res.json({
         totalQuestions: result.length,
-        message: "Available options!",
+        message: "Available questions!",
         questions: result
       });
     })

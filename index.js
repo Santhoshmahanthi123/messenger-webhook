@@ -416,6 +416,17 @@ app.post("/test", (req, res) => {
       console.log(err);
     });
 });
+// app.post("/test", (req, res) => {
+//   const input = req.body.select;
+//   Option.find({ _id: req.body.id })
+//     .exec()
+//     .then(result => {
+//       console.log(result);
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     });
+// });
 
 // Sets server port and logs message on success
 app.listen(port, () => {
