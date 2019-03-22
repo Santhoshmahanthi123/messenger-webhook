@@ -390,8 +390,9 @@ app.post("/test", (req, res) => {
   Option.find({ _id: req.body.id })
     .exec()
     .then(result => {
-      res.json({ result: result });
+      console.log(result);
       result.map(options => {
+        res.json({ options: options.options });
         console.log(options.options);
         options.options.map(check => {
           if (check == input) {
@@ -401,7 +402,7 @@ app.post("/test", (req, res) => {
               .then(type => {
                 type.map(types => {
                   if (types.option == check) {
-                    console.log(types);
+                    console.log(types.types[0]);
                   }
                 });
               })
@@ -416,18 +417,41 @@ app.post("/test", (req, res) => {
       console.log(err);
     });
 });
-// app.post("/test", (req, res) => {
-//   const input = req.body.select;
-//   Option.find({ _id: req.body.id })
-//     .exec()
-//     .then(result => {
-//       console.log(result);
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     });
-// });
-
+app.get("/test", (req, res) => {
+  var questionId = req.body.questionId;
+  var choose = req.body.choose;
+  // var type = req.body.type;
+  Question.find({ _id: questionId })
+    .exec()
+    .then(question => {
+      console.log("Matched with question Id", question);
+      Option.find({ questionId: questionId })
+        .exec()
+        .then(result => {
+          res.json({ options: result[0] });
+          console.log("Choose your option!", result[0].options);
+          result[0].options.map(option => {
+            if (option == choose) {
+              console.log("You have choosen:", option);
+              Type.find({ option: option })
+                .exec()
+                .then(type => {
+                  console.log(type[0].types[0]);
+                })
+                .catch(err => {
+                  consolele.log(err);
+                });
+            }
+          });
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    })
+    .catch(err => {
+      consolelog(err);
+    });
+});
 // Sets server port and logs message on success
 app.listen(port, () => {
   console.log(`webhook is listening on: ${port}`);
