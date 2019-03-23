@@ -13,7 +13,6 @@ exports.create_webhook = (questionId, callback) => {
         .exec()
         .then(result => {
           callback(result[0].options);
-          //   console.log("Choose your option!", result[0].options);
         })
         .catch(err => {
           console.log(err);

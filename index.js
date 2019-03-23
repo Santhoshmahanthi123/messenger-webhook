@@ -171,7 +171,7 @@ function handlePostback(sender_psid, received_postback) {
         options.push({
           type: "postback",
           title: item,
-          payload: "B:" + item
+          payload: "B:" + payload_value + ":" + item
         });
       });
       response = {
@@ -202,7 +202,6 @@ function handlePostback(sender_psid, received_postback) {
       // Send the message to acknowledge the postback
       callSendAPI(sender_psid, response);
     });
-
     // let options_available = webhook.create_webhook(payload_value);
   }
 }
@@ -236,38 +235,7 @@ function callSendAPI(sender_psid, response) {
     }
   );
 }
-app.post("/test", (req, res) => {
-  const input = req.body.select;
-  Option.find({ _id: req.body.id })
-    .exec()
-    .then(result => {
-      console.log(result);
-      result.map(options => {
-        res.json({ options: options.options });
-        console.log(options.options);
-        options.options.map(check => {
-          if (check == input) {
-            console.log(check);
-            Type.find()
-              .exec()
-              .then(type => {
-                type.map(types => {
-                  if (types.option == check) {
-                    console.log(types.types[0]);
-                  }
-                });
-              })
-              .catch(err => {
-                console.log(err);
-              });
-          }
-        });
-      });
-    })
-    .catch(err => {
-      console.log(err);
-    });
-});
+
 app.get("/test", (req, res) => {
   var questionId = req.body.questionId;
   var choose = req.body.choose;
