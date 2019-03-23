@@ -111,13 +111,8 @@ function handleMessage(sender_psid, received_message) {
       .exec()
       .then(result => {
         console.log(result);
-      });
-    Question.find()
-      .exec()
-      .then(result => {
-        console.log(result);
         let options = [];
-        result.questions.map(item => {
+        result.map(item => {
           options.push({
             type: "postback",
             title: item.question,
