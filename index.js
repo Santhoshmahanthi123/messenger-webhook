@@ -105,7 +105,7 @@ app.get("/webhook", (req, res) => {
 function handleMessage(sender_psid, received_message) {
   let response;
 
-  if (received_message.text || received_message.attachment) {
+  if (received_message.text || received_message.attachments) {
     // Get the URL of the message attachments
     Question.find()
       .exec()
