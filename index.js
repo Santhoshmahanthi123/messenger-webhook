@@ -111,15 +111,15 @@ function handleMessage(sender_psid, received_message) {
       .exec()
       .then(result => {
         console.log(result);
-        let options = [];
-        result.questions.map((item) => {
-          options.push(
-            {
-              type: "postback",
-              title: item.question,
-              payload: "A:" + item._id
-            }
-          )
+        // let options = [];
+        // result.questions.map((item) => {
+        //   options.push(
+        //     {
+        //       type: "postback",
+        //       title: item.question,
+        //       payload: "A:" + item._id
+        //     }
+        //   )
         })
         response = {
           attachment: {
