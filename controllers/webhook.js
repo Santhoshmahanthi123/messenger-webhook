@@ -9,7 +9,7 @@ exports.create_webhook = questionId => {
       Option.find({ questionId: questionId })
         .exec()
         .then(result => {
-          callback(result[0]);
+          //   callback(result[0]);
           res.json({ options: result[0] });
           console.log("Choose your option!", result[0].options);
           result[0].options.map(option => {
