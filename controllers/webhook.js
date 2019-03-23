@@ -23,10 +23,12 @@ exports.create_webhook = (questionId, callback) => {
     });
 };
 exports.create_webhook_type = (option, optionId, callback) => {
-  Type.find({ option: option, optionId: optionId })
+  Type.find({ option: option, optionId: { $in: [ObjectId(optionId)] } })
     .exec()
     .then(result => {
       console.log("####", result);
       callback(result);
     });
 };
+
+// db.types.find({"optionId":{"$in":[ObjectId("5c94d940a753423e79ee8d97")]},"option":"Today"})
