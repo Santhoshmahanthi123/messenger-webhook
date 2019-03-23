@@ -247,8 +247,8 @@ function handlePostback(sender_psid, received_postback) {
     });
   }
   if (payload_key == "C") {
-    webhook.create_webhook_subtype(payload_item, payload_value, results => {
-      console.log("&&&&&&&&&&&&", results);
+    webhook.create_webhook_subtype(payload_item, payload_value, output => {
+      console.log("&&&&&&&&&&&&", output);
       response = {
         text: "Thanks for selecting " + payload_item
       };
