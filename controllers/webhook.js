@@ -34,7 +34,7 @@ exports.create_webhook_type = (option, optionId, callback) => {
     });
 };
 exports.create_webhook_subtype = (option, callback) => {
-  Type.find({ option: option, _id: { $in: [_id] } })
+  Type.find({ _id: { $in: [id] }, option: option })
     .exec()
     .then(result => {
       console.log("####", result);
@@ -46,3 +46,4 @@ exports.create_webhook_subtype = (option, callback) => {
 };
 
 // db.types.find({"optionId":{"$in":[ObjectId("5c94d940a753423e79ee8d97")]},"option":"Today"})
+// db.types.find({"_id":{"$in":[ObjectId("5c94e1613ac847442060c301")]},"option":"Google"})
