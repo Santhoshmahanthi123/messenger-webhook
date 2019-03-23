@@ -9,10 +9,10 @@ exports.create_webhook = questionId => {
       console.log("Matched with question Id", question[0]);
       let id = question[0]._id;
       console.log(id);
-      Option.find()
+      Option.find({ questionId: id })
         .exec()
         .then(result => {
-          console.log("options:", result);
+          console.log("options:", result[0]);
           //   console.log("Choose your option!", result[0].options);
         })
         .catch(err => {
