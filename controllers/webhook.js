@@ -1,7 +1,7 @@
 const Question = require("../models/question");
 const Option = require("../models/options");
 const Type = require("../models/types");
-exports.create_webhook = questionId => {
+exports.create_webhook = (questionId, callback) => {
   console.log("@@@@@@", questionId);
   Question.find({ _id: questionId })
     .exec()
@@ -12,7 +12,8 @@ exports.create_webhook = questionId => {
       Option.find({ questionId: id })
         .exec()
         .then(result => {
-          console.log("options:", result[0]);
+          console.log("options:", result[0].options);
+          callback();
           //   console.log("Choose your option!", result[0].options);
         })
         .catch(err => {
