@@ -206,6 +206,46 @@ function handlePostback(sender_psid, received_postback) {
     });
     // let options_available = webhook.create_webhook(payload_value);
   }
+  if (payload == B) {
+    webhook.create_webhook_type(payload_item, payload_value, response => {
+      console.log("***************", res);
+      let options = [];
+      res[0].options.map(item => {
+        options.push({
+          type: "postback",
+          title: item,
+          payload: "C:" + res[0]._id + ":" + item
+        });
+      });
+      response = {
+        attachment: {
+          type: "template",
+          payload: {
+            template_type: "generic",
+            elements: [
+              {
+                title: "welcome to flying sphaghetti monster!",
+                subtitle: "Select your favourite type!.",
+                image_url:
+                  "https://content3.jdmagicbox.com/comp/hyderabad/h5/040pxx40.xx40.140516124003.h3h5/catalogue/flying-spaghetti-monster-restaurant-jubilee-hills-hyderabad-home-delivery-restaurants-p6kmmr.jpg",
+                default_action: {
+                  type: "web_url",
+                  url:
+                    "https://content3.jdmagicbox.com/comp/hyderabad/h5/040pxx40.xx40.140516124003.h3h5/catalogue/flying-spaghetti-monster-restaurant-jubilee-hills-hyderabad-home-delivery-restaurants-p6kmmr.jpg",
+
+                  webview_height_ratio: "tall"
+                },
+
+                buttons: options
+              }
+            ]
+          }
+        }
+      };
+      // Send the message to acknowledge the postback
+      callSendAPI(sender_psid, response);
+    });
+  }
 }
 // Sends response messages via the Send API
 function callSendAPI(sender_psid, response) {
