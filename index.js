@@ -246,6 +246,16 @@ function handlePostback(sender_psid, received_postback) {
       callSendAPI(sender_psid, response);
     });
   }
+  if (payload_key == "C") {
+    webhook.create_webhook_subtype(payload_item, results => {
+      console.log("&&&&&&&&&&&&", results[0]);
+      response = {
+        text: "Thanks for selecting" + payload_item
+      };
+      // Send the message to acknowledge the postback
+      callSendAPI(sender_psid, response);
+    });
+  }
 }
 // Sends response messages via the Send API
 function callSendAPI(sender_psid, response) {
@@ -276,30 +286,6 @@ function callSendAPI(sender_psid, response) {
   );
 }
 
-// app.get("/test", (req, res) => {
-//   var questionId = req.body.questionId;
-//   var choose = req.body.choose;
-//   // var type = req.body.type;
-//   Question.find({ _id: questionId })
-//     .exec()
-//     .then(question => {
-//       console.log("Matched with question Id", question);
-//       Option.find({ questionId: questionId })
-//         .exec()
-//         .then(result => {
-//           res.json(result[0].options);
-//           console.log("Choose your option!", result[0].options);
-//           let select = result[0].options;
-//           if(select.indexOf(choose)
-//         })
-//         .catch(err => {
-//           console.log(err);
-//         });
-//     })
-//     .catch(err => {
-//       consolelog(err);
-//     });
-// });
 // Sets server port and logs message on success
 app.listen(port, () => {
   console.log(`webhook is listening on: ${port}`);
