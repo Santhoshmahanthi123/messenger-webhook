@@ -169,7 +169,7 @@ function handlePostback(sender_psid, received_postback) {
     webhook.create_webhook(payload_value, res => {
       console.log("$$$$$", res);
       let options = [];
-      res.options.map(item => {
+      res[0].options.map(item => {
         options.push({
           type: "postback",
           title: item,
