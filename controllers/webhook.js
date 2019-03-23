@@ -6,13 +6,13 @@ exports.create_webhook = questionId => {
   Question.find({ _id: questionId })
     .exec()
     .then(question => {
-      console.log("Matched with question Id");
-      Option.find({ questionId: questionId })
+      console.log("Matched with question Id", question[0]);
+      Option.find({ questionId: question[0]._id })
         .exec()
         .then(result => {
           //   callback(result[0]);
           console.log("options:", result[0]);
-          console.log("Choose your option!", result[0].options);
+          //   console.log("Choose your option!", result[0].options);
           result[0].options.map(option => {
             if (option == choose) {
               console.log("You have choosen:", option);
