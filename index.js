@@ -189,8 +189,12 @@ function handlePostback(sender_psid, received_postback) {
   let response;
 
   // Get the payload for the postback
-  let payload = received_postback.payload;
-
+  let payload = received_postback.payload.split(":");
+  let payload_key = payload[0];
+  let payload_value = payload[1];
+  console.log(payload_key);
+  console.log(payload_value);
+  webhook.create_webhook();
   if (payload === "A") {
     // response = { text: "You have opted for Walkins!!" };
     webhook.create_webhook();
@@ -235,118 +239,6 @@ function handlePostback(sender_psid, received_postback) {
           ]
         }
       }
-    };
-  } else if (payload === "B") {
-    // response = { text: "You have opted for Reservation!." };
-    response = {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "generic",
-          elements: [
-            {
-              title: "you have choosen for reservation!",
-              subtitle: "please choose these available reservations!",
-              image_url:
-                "https://content3.jdmagicbox.com/comp/hyderabad/h5/040pxx40.xx40.140516124003.h3h5/catalogue/flying-spaghetti-monster-restaurant-jubilee-hills-hyderabad-home-delivery-restaurants-p6kmmr.jpg",
-              default_action: {
-                type: "web_url",
-                url:
-                  "https://content3.jdmagicbox.com/comp/hyderabad/h5/040pxx40.xx40.140516124003.h3h5/catalogue/flying-spaghetti-monster-restaurant-jubilee-hills-hyderabad-home-delivery-restaurants-p6kmmr.jpg",
-
-                webview_height_ratio: "tall"
-              },
-
-              buttons: [
-                {
-                  type: "postback",
-                  title: "7 PM",
-                  payload: "d"
-                },
-                {
-                  type: "postback",
-                  title: "8 PM",
-                  payload: "e"
-                },
-                {
-                  type: "postback",
-                  title: "9 PM",
-                  payload: "f"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    };
-  } else if (payload === "C") {
-    // response = { text: "You have opted for Feed back!" };
-    response = {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "generic",
-          elements: [
-            {
-              title: "Thanks for choosing for feed back!",
-              subtitle: "Please select below buttons for feed back",
-              image_url:
-                "https://content3.jdmagicbox.com/comp/hyderabad/h5/040pxx40.xx40.140516124003.h3h5/catalogue/flying-spaghetti-monster-restaurant-jubilee-hills-hyderabad-home-delivery-restaurants-p6kmmr.jpg",
-              default_action: {
-                type: "web_url",
-                url:
-                  "https://content3.jdmagicbox.com/comp/hyderabad/h5/040pxx40.xx40.140516124003.h3h5/catalogue/flying-spaghetti-monster-restaurant-jubilee-hills-hyderabad-home-delivery-restaurants-p6kmmr.jpg",
-
-                webview_height_ratio: "tall"
-              },
-              buttons: [
-                {
-                  type: "postback",
-                  title: "Best!",
-                  payload: "g"
-                },
-                {
-                  type: "postback",
-                  title: "Good!",
-                  payload: "h"
-                },
-                {
-                  type: "postback",
-                  title: "Average!",
-                  payload: "i"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    };
-  } else if (payload === "a") {
-    response = { text: "Thanks your walkin is confirmed at 4 PM!" };
-  } else if (payload === "b") {
-    response = { text: "Thanks your walkin is confirmed at 5 PM!" };
-  } else if (payload === "c") {
-    response = { text: "Thanks your walkin is confirmed at 6 PM!" };
-  } else if (payload === "d") {
-    response = { text: "Thanks your table is reserved for 7 PM!" };
-  } else if (payload === "e") {
-    response = { text: "Thanks your table is reserved for 8 PM!" };
-  } else if (payload === "f") {
-    response = { text: "Thanks your table is reserved for 9 PM!" };
-  } else if (payload === "g") {
-    response = { text: "Thanks for your valuable feed back!" };
-  } else if (payload === "h") {
-    response = { text: "Thanks for your valuable feed back!" };
-  } else if (payload === "i") {
-    response = { text: "Thanks for your valuable feed back!" };
-  } else if (payload === "yes") {
-    response = {
-      text:
-        "Thanks for your response we will review it. Please feel free to chat with us!"
-    };
-  } else if (payload === "yeah") {
-    response = {
-      text: "Thanks for your suggestion. Please feel free to chat with us!"
     };
   }
   // Send the message to acknowledge the postback
