@@ -34,16 +34,27 @@ exports.create_webhook_type = (option, optionId, callback) => {
     });
 };
 exports.create_webhook_subtype = (option, id, callback) => {
-  Type.find({ _id: { $in: [id] }, option: option })
+  Type.find({ option: option, _id: { $in: [id] } })
     .exec()
     .then(result => {
-      console.log("####", result[0]);
+      console.log("####@@@", result);
       callback(result);
     })
     .catch(err => {
       console.log(err);
     });
 };
+// exports.create_webhook_subtype = (option, id, callback) => {
+//   Type.find({ _id: { $in: [id] }, option: option })
+//     .exec()
+//     .then(result => {
+//       console.log("####", result);
+//       callback(result);
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     });
+// };
 
 // db.types.find({"optionId":{"$in":[ObjectId("5c94d940a753423e79ee8d97")]},"option":"Today"})
 // db.types.find({"_id":{"$in":[ObjectId("5c94e1613ac847442060c301")]},"option":"Google"})
