@@ -173,7 +173,7 @@ function handlePostback(sender_psid, received_postback) {
         options.push({
           type: "postback",
           title: item,
-          payload: "B:" + payload_value + ":" + item
+          payload: "B:" + res[0]._id + ":" + item
         });
       });
       response = {
