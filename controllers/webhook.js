@@ -10,7 +10,7 @@ exports.create_webhook = questionId => {
         .exec()
         .then(result => {
           //   callback(result[0]);
-          res.json({ options: result[0] });
+        console.log( options: result[0] );
           console.log("Choose your option!", result[0].options);
           result[0].options.map(option => {
             if (option == choose) {
@@ -21,7 +21,7 @@ exports.create_webhook = questionId => {
                   console.log(type[0].types[0]);
                 })
                 .catch(err => {
-                  consolele.log(err);
+                  console.log(err);
                 });
             }
           });
@@ -31,6 +31,6 @@ exports.create_webhook = questionId => {
         });
     })
     .catch(err => {
-      consolelog(err);
+      console.log(err);
     });
 };
