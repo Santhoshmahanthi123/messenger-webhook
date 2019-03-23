@@ -12,7 +12,6 @@ exports.create_webhook = (questionId, callback) => {
       Option.find({ questionId: id })
         .exec()
         .then(result => {
-          console.log("options:", result[0].options);
           callback(result[0].options);
           //   console.log("Choose your option!", result[0].options);
         })
