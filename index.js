@@ -167,7 +167,7 @@ function handlePostback(sender_psid, received_postback) {
   if (payload_key === "A") {
     // response = { text: "You have opted for Walkins!!" };
     webhook.create_webhook(payload_value, res => {
-      console.log(res[0]);
+      console.log("$$$$$", res);
       let options = [];
       res.options.map(item => {
         options.push({
