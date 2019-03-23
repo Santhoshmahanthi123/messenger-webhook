@@ -12,7 +12,7 @@ exports.create_webhook = (questionId, callback) => {
       Option.find({ questionId: id })
         .exec()
         .then(result => {
-          callback(result[0].options);
+          callback(result[0]);
         })
         .catch(err => {
           console.log(err);
@@ -20,5 +20,13 @@ exports.create_webhook = (questionId, callback) => {
     })
     .catch(err => {
       console.log(err);
+    });
+};
+exports.create_webhook_type = (option, optionId, callback) => {
+  Type.find({ option: option, optionId: optionId })
+    .exec()
+    .then(result => {
+      console.log("####", result);
+      callback(result.types);
     });
 };

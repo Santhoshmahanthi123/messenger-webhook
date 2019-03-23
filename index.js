@@ -167,7 +167,7 @@ function handlePostback(sender_psid, received_postback) {
     webhook.create_webhook(payload_value, res => {
       console.log(res);
       let options = [];
-      res.map(item => {
+      res.options.map(item => {
         options.push({
           type: "postback",
           title: item,
@@ -205,11 +205,9 @@ function handlePostback(sender_psid, received_postback) {
     // let options_available = webhook.create_webhook(payload_value);
   }
 }
-
 // Sends response messages via the Send API
 function callSendAPI(sender_psid, response) {
   // Construct the message body
-
   let request_body = {
     recipient: {
       id: sender_psid
@@ -236,41 +234,30 @@ function callSendAPI(sender_psid, response) {
   );
 }
 
-app.get("/test", (req, res) => {
-  var questionId = req.body.questionId;
-  var choose = req.body.choose;
-  // var type = req.body.type;
-  Question.find({ _id: questionId })
-    .exec()
-    .then(question => {
-      console.log("Matched with question Id", question);
-      Option.find({ questionId: questionId })
-        .exec()
-        .then(result => {
-          res.json(result[0].options);
-          console.log("Choose your option!", result[0].options);
-          result[0].options.map(option => {
-            if (option == choose) {
-              console.log("You have choosen:", option);
-              Type.find({ option: option })
-                .exec()
-                .then(type => {
-                  console.log(type[0].types[0]);
-                })
-                .catch(err => {
-                  consolele.log(err);
-                });
-            }
-          });
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    })
-    .catch(err => {
-      consolelog(err);
-    });
-});
+// app.get("/test", (req, res) => {
+//   var questionId = req.body.questionId;
+//   var choose = req.body.choose;
+//   // var type = req.body.type;
+//   Question.find({ _id: questionId })
+//     .exec()
+//     .then(question => {
+//       console.log("Matched with question Id", question);
+//       Option.find({ questionId: questionId })
+//         .exec()
+//         .then(result => {
+//           res.json(result[0].options);
+//           console.log("Choose your option!", result[0].options);
+//           let select = result[0].options;
+//           if(select.indexOf(choose)
+//         })
+//         .catch(err => {
+//           console.log(err);
+//         });
+//     })
+//     .catch(err => {
+//       consolelog(err);
+//     });
+// });
 // Sets server port and logs message on success
 app.listen(port, () => {
   console.log(`webhook is listening on: ${port}`);
