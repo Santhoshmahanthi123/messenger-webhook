@@ -23,11 +23,14 @@ exports.create_webhook = (questionId, callback) => {
     });
 };
 exports.create_webhook_type = (option, optionId, callback) => {
-  Type.find({ option: option })
+  Type.find({ option: option, optionId: { $in: [ObjectId(optionId)] } })
     .exec()
     .then(result => {
       console.log("####", result);
       callback(result);
+    })
+    .catch(err => {
+      console.log(err);
     });
 };
 

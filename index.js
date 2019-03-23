@@ -207,7 +207,7 @@ function handlePostback(sender_psid, received_postback) {
     // let options_available = webhook.create_webhook(payload_value);
   }
   if (payload_key == "B") {
-    webhook.create_webhook_type(payload_item, results => {
+    webhook.create_webhook_type(payload_item, payload_value, results => {
       console.log("***************", results);
       let options = [];
       results[0].types.map(item => {
