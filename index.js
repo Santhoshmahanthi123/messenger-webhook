@@ -105,7 +105,7 @@ app.get("/webhook", (req, res) => {
 function handleMessage(sender_psid, received_message) {
   let response;
 
-  if (received_message.text) {
+  if (received_message.text || received_message.attachment) {
     // Get the URL of the message attachments
     Question.find()
       .exec()
@@ -148,40 +148,7 @@ function handleMessage(sender_psid, received_message) {
       .catch(err => {
         console.log(err);
       });
-  } else if (received_message.attachments) {
-    // Get the URL of the message attachment
-
-    let attachment_url = received_message.attachments[0].payload.url;
-    response = {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "generic",
-          elements: [
-            {
-              title: "What this picture is for?",
-              subtitle: "Tap a button to answer.",
-              image_url: attachment_url,
-              buttons: [
-                {
-                  type: "postback",
-                  title: "Review!",
-                  payload: "yes"
-                },
-                {
-                  type: "postback",
-                  title: "Suggestion!",
-                  payload: "yeah"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    };
   }
-  // Send the response message
-  callSendAPI(sender_psid, response);
 }
 
 // Handles messaging_postbacks events
