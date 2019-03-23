@@ -17,7 +17,7 @@ const type_controller = require("./controllers/types");
 const Question = require("./models/question");
 const Option = require("./models/options");
 const Type = require("./models/types");
-const webhook = require("./controllers/webhook")
+const webhook = require("./controllers/webhook");
 app.use("/public", express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -111,16 +111,19 @@ function handleMessage(sender_psid, received_message) {
       .exec()
       .then(result => {
         console.log(result);
-        // let options = [];
-        // result.questions.map((item) => {
-        //   options.push(
-        //     {
-        //       type: "postback",
-        //       title: item.question,
-        //       payload: "A:" + item._id
-        //     }
-        //   )
-        })
+      });
+    Question.find()
+      .exec()
+      .then(result => {
+        console.log(result);
+        let options = [];
+        result.questions.map(item => {
+          options.push({
+            type: "postback",
+            title: item.question,
+            payload: "A:" + item._id
+          });
+        });
         response = {
           attachment: {
             type: "template",
@@ -136,7 +139,7 @@ function handleMessage(sender_psid, received_message) {
                     type: "web_url",
                     url:
                       "https://content3.jdmagicbox.com/comp/hyderabad/h5/040pxx40.xx40.140516124003.h3h5/catalogue/flying-spaghetti-monster-restaurant-jubilee-hills-hyderabad-home-delivery-restaurants-p6kmmr.jpg",
-    
+
                     webview_height_ratio: "tall"
                   },
                   buttons: options
@@ -150,7 +153,6 @@ function handleMessage(sender_psid, received_message) {
       .catch(err => {
         console.log(err);
       });
-   
   } else if (received_message.attachments) {
     // Get the URL of the message attachment
 
@@ -182,10 +184,9 @@ function handleMessage(sender_psid, received_message) {
         }
       }
     };
-    callSendAPI(sender_psid, response);
   }
   // Send the response message
-  
+  callSendAPI(sender_psid, response);
 }
 
 // Handles messaging_postbacks events
@@ -197,7 +198,7 @@ function handlePostback(sender_psid, received_postback) {
 
   if (payload === "A") {
     // response = { text: "You have opted for Walkins!!" };
-    webhook.create_webhook()
+    webhook.create_webhook();
 
     response = {
       attachment: {
