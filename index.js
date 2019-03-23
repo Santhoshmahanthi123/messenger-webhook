@@ -207,14 +207,14 @@ function handlePostback(sender_psid, received_postback) {
     // let options_available = webhook.create_webhook(payload_value);
   }
   if (payload == "B") {
-    webhook.create_webhook_type(payload_item, payload_value, response => {
-      console.log("***************", res);
+    webhook.create_webhook_type(payload_item, payload_value, results => {
+      console.log("***************", results);
       let options = [];
-      res[0].options.map(item => {
+      results[0].types.map(item => {
         options.push({
           type: "postback",
           title: item,
-          payload: "C:" + res[0]._id + ":" + item
+          payload: "C:" + results[0]._id + ":" + item
         });
       });
       response = {
