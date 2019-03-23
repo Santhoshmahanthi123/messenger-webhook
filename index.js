@@ -171,7 +171,7 @@ function handlePostback(sender_psid, received_postback) {
         options.push({
           type: "postback",
           title: item,
-          payload: "B:" + item
+          payload: "B"
         });
       });
       response = {
@@ -181,8 +181,8 @@ function handlePostback(sender_psid, received_postback) {
             template_type: "generic",
             elements: [
               {
-                title: "you have choosen for walkin!",
-                subtitle: "please choose these available walkins!.",
+                title: "welcome to flying sphaghetti monster!",
+                subtitle: "Select your option!.",
                 image_url:
                   "https://content3.jdmagicbox.com/comp/hyderabad/h5/040pxx40.xx40.140516124003.h3h5/catalogue/flying-spaghetti-monster-restaurant-jubilee-hills-hyderabad-home-delivery-restaurants-p6kmmr.jpg",
                 default_action: {
@@ -210,12 +210,14 @@ function handlePostback(sender_psid, received_postback) {
 // Sends response messages via the Send API
 function callSendAPI(sender_psid, response) {
   // Construct the message body
+
   let request_body = {
     recipient: {
       id: sender_psid
     },
     message: response
   };
+  console.log(request_body);
 
   // Send the HTTP request to the Messenger Platform
   request(
