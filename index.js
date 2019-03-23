@@ -164,52 +164,46 @@ function handlePostback(sender_psid, received_postback) {
 
   if (payload_key === "A") {
     // response = { text: "You have opted for Walkins!!" };
-    webhook.create_webhook(payload_value, callback());
-    // let options_available = webhook.create_webhook(payload_value);
-    response = {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "generic",
-          elements: [
-            {
-              title: "you have choosen for walkin!",
-              subtitle: "please choose these available walkins!.",
-              image_url:
-                "https://content3.jdmagicbox.com/comp/hyderabad/h5/040pxx40.xx40.140516124003.h3h5/catalogue/flying-spaghetti-monster-restaurant-jubilee-hills-hyderabad-home-delivery-restaurants-p6kmmr.jpg",
-              default_action: {
-                type: "web_url",
-                url:
+    webhook.create_webhook(payload_value, res => {
+      let options = [];
+      res.map(item => {
+        options.push({
+          type: "postback",
+          title: item,
+          payload: "B:" + item
+        });
+      });
+      response = {
+        attachment: {
+          type: "template",
+          payload: {
+            template_type: "generic",
+            elements: [
+              {
+                title: "you have choosen for walkin!",
+                subtitle: "please choose these available walkins!.",
+                image_url:
                   "https://content3.jdmagicbox.com/comp/hyderabad/h5/040pxx40.xx40.140516124003.h3h5/catalogue/flying-spaghetti-monster-restaurant-jubilee-hills-hyderabad-home-delivery-restaurants-p6kmmr.jpg",
+                default_action: {
+                  type: "web_url",
+                  url:
+                    "https://content3.jdmagicbox.com/comp/hyderabad/h5/040pxx40.xx40.140516124003.h3h5/catalogue/flying-spaghetti-monster-restaurant-jubilee-hills-hyderabad-home-delivery-restaurants-p6kmmr.jpg",
 
-                webview_height_ratio: "tall"
-              },
+                  webview_height_ratio: "tall"
+                },
 
-              buttons: [
-                {
-                  type: "postback",
-                  title: "4 PM",
-                  payload: "a"
-                },
-                {
-                  type: "postback",
-                  title: "5 PM",
-                  payload: "b"
-                },
-                {
-                  type: "postback",
-                  title: "6 PM",
-                  payload: "c"
-                }
-              ]
-            }
-          ]
+                buttons: options
+              }
+            ]
+          }
         }
-      }
-    };
+      };
+      // Send the message to acknowledge the postback
+      callSendAPI(sender_psid, response);
+    });
+
+    // let options_available = webhook.create_webhook(payload_value);
   }
-  // Send the message to acknowledge the postback
-  callSendAPI(sender_psid, response);
 }
 
 // Sends response messages via the Send API
