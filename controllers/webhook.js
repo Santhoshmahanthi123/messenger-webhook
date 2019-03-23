@@ -27,7 +27,7 @@ exports.create_webhook_type = (option, optionId, callback) => {
     .exec()
     .then(result => {
       console.log("####", result);
-      callback(result);
+      callback(result[0]);
     })
     .catch(err => {
       console.log(err);
