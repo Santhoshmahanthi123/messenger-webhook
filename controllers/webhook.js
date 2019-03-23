@@ -34,7 +34,7 @@ exports.create_webhook_type = (option, optionId, callback) => {
     });
 };
 exports.create_webhook_subtype = (option, callback) => {
-  Type.find({ option: option, _id: { $in: [id] } })
+  Type.find({ option: option, _id: { $in: [_id] } })
     .exec()
     .then(result => {
       console.log("####", result);
