@@ -162,7 +162,7 @@ function handlePostback(sender_psid, received_postback) {
   let payload_item = payload[2];
   console.log(payload_key);
   console.log(payload_value);
-  console.log(payload_item;
+  console.log(payload_item);
 
   if (payload_key === "A") {
     // response = { text: "You have opted for Walkins!!" };
