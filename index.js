@@ -18,15 +18,42 @@ const Question = require("./models/question");
 const Option = require("./models/options");
 const Type = require("./models/types");
 const webhook = require("./controllers/webhook");
+const ejs = require("ejs");
 app.use("/public", express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.set("view engine", "ejs");
 mongoose.connect(DBURL, {
   useNewUrlParser: true
 });
 
 // routes
-app.post("/question", question_controller.create_question);
+app.get("/", (req, res) => {
+  res.render("home");
+});
+app.get("/questionForm", (req, res) => {
+  res.render("questionForm");
+});
+app.get("/optionForm", (req, res) => {
+  Question.find()
+    .exec()
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  res.render("optionForm");
+});
+app.get("/typesForm", (req, res) => {
+  res.render("typesForm");
+});
+app.get("/optionUpdateForm", (req, res) => {
+  res.render("optionUpdateForm");
+});
+app.post("/question", question_controller.create_question, (req, res) => {
+  res.redirect("/");
+});
 app.get("/question", question_controller.get_questions);
 app.delete("/question", question_controller.delete_question);
 app.patch("/question", question_controller.update_question);
@@ -127,7 +154,7 @@ function handleMessage(sender_psid, received_message) {
               elements: [
                 {
                   title: "Welcome to Flying Sphaghetti Monster Restaurant!",
-                  subtitle: "Choose any of the options below.",
+                  subtitle: "Do you want to?",
                   image_url:
                     "https://content3.jdmagicbox.com/comp/hyderabad/h5/040pxx40.xx40.140516124003.h3h5/catalogue/flying-spaghetti-monster-restaurant-jubilee-hills-hyderabad-home-delivery-restaurants-p6kmmr.jpg",
                   default_action: {

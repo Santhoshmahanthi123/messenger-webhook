@@ -10,12 +10,15 @@
   "author": "santhosh",
   "license": "ISC",
   "dependencies": {
+    "alert-node": "^1.2.3",
     "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",
+    "ejs": "^2.6.1",
     "express": "^4.16.4",
     "mongoose": "^5.4.19",
     "node-wit": "^5.0.0",
     "path": "^0.12.7",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "sweetalert": "^2.1.2"
   }
 }

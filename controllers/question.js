@@ -1,5 +1,6 @@
 const Question = require("../models/question");
 const mongoose = require("mongoose");
+const alert = require("alert-node");
 exports.create_question = (req, res) => {
   const question = new Question({
     _id: new mongoose.Types.ObjectId(),
@@ -10,17 +11,13 @@ exports.create_question = (req, res) => {
     .save()
     .then(result => {
       console.log(result);
-      res.status(200).json({
-        message: "Question posted ",
-        createdQuestion: question
-      });
     })
+
     .catch(err => {
       console.log(err);
-      res.status(500).json({
-        error: err
-      });
     });
+  alert("Question posted successfully!");
+  res.render("home");
 };
 exports.get_questions = (req, res) => {
   Question.find()
