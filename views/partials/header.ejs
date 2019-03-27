@@ -74,41 +74,47 @@
     <script>
       $(document).ready(() => {
         $("#btn").click(() => {
-          $.get("http://localhost:3000/question", (data, status) => {
-            console.log(data);
-            data.questions.forEach(dt => {
-              $("#tdata").append(
-                "<tr>" +
-                  "<td>" +
-                  dt._id +
-                  "</td>" +
-                  "<td>" +
-                  dt.question +
-                  "</td>" +
-                  "</tr>"
-              );
-            });
-          });
+          $.get(
+            "https://messenger-webchat.herokuapp.com/question",
+            (data, status) => {
+              console.log(data);
+              data.questions.forEach(dt => {
+                $("#tdata").append(
+                  "<tr>" +
+                    "<td>" +
+                    dt._id +
+                    "</td>" +
+                    "<td>" +
+                    dt.question +
+                    "</td>" +
+                    "</tr>"
+                );
+              });
+            }
+          );
         });
         $("#btn_1").click(() => {
-          $.get("http://localhost:3000/option", (data, status) => {
-            console.log(data);
-            data.options.forEach(dt => {
-              $("#topt").append(
-                "<tr>" +
-                  "<td>" +
-                  dt._id +
-                  "</td>" +
-                  "<td>" +
-                  dt.options +
-                  "</td>" +
-                  "<td>" +
-                  dt.questionId +
-                  "</td>" +
-                  "</tr>"
-              );
-            });
-          });
+          $.get(
+            "https://messenger-webchat.herokuapp.com/option",
+            (data, status) => {
+              console.log(data);
+              data.options.forEach(dt => {
+                $("#topt").append(
+                  "<tr>" +
+                    "<td>" +
+                    dt._id +
+                    "</td>" +
+                    "<td>" +
+                    dt.options +
+                    "</td>" +
+                    "<td>" +
+                    dt.questionId +
+                    "</td>" +
+                    "</tr>"
+                );
+              });
+            }
+          );
         });
       });
       window.onscroll = function() {
