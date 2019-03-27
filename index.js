@@ -34,6 +34,9 @@ app.get("/", (req, res) => {
 app.get("/questionForm", (req, res) => {
   res.render("questionForm");
 });
+app.get("/optionUpdate", (req, res) => {
+  res.render("optionUpdateForm");
+});
 app.get("/optionForm", (req, res) => {
   Question.find()
     .exec()
@@ -60,7 +63,7 @@ app.patch("/question", question_controller.update_question);
 app.post("/option", option_controller.create_option);
 app.get("/option", option_controller.get_options);
 app.delete("/option", option_controller.delete_option);
-app.patch("/option", option_controller.update_option);
+app.patch("/optionUpdate/:optionId/:option", option_controller.update_option);
 app.post("/answer", answer_controller.post_answer);
 app.get("/answer", answer_controller.get_answers);
 app.delete("/answer", answer_controller.delete_answer);

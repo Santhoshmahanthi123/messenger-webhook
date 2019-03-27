@@ -6,18 +6,17 @@ exports.create_question = (req, res) => {
     _id: new mongoose.Types.ObjectId(),
     question: req.body.question
   });
-
   question
     .save()
     .then(result => {
       console.log(result);
+      alert("Question posted successfully!");
+      res.render("home");
     })
-
     .catch(err => {
+      alert("Please enter the question...");
       console.log(err);
     });
-  alert("Question posted successfully!");
-  res.render("home");
 };
 exports.get_questions = (req, res) => {
   Question.find()

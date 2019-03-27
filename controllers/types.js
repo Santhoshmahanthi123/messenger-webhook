@@ -1,5 +1,6 @@
 const Type = require("../models/types");
 const mongoose = require("mongoose");
+const alert = require("alert-node");
 exports.create_type = (req, res) => {
   const type = new Type({
     _id: new mongoose.Types.ObjectId(),
@@ -11,16 +12,12 @@ exports.create_type = (req, res) => {
     .save()
     .then(result => {
       console.log(result);
-      res.status(200).json({
-        message: "Types added",
-        createdType: type
-      });
+      alert("Types posted successfully!");
+      res.render("home");
     })
     .catch(err => {
+      alert("Please enter the type...");
       console.log(err);
-      res.status(500).json({
-        error: err
-      });
     });
 };
 exports.get_types = (req, res) => {

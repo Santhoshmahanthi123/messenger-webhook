@@ -1,5 +1,6 @@
 const Option = require("../models/options");
 const mongoose = require("mongoose");
+const alert = require("alert-node");
 exports.create_option = (req, res) => {
   const option = new Option({
     _id: new mongoose.Types.ObjectId(),
@@ -10,16 +11,12 @@ exports.create_option = (req, res) => {
     .save()
     .then(result => {
       console.log(result);
-      res.status(200).json({
-        message: "Options added",
-        createdOption: option
-      });
+      alert("option posted successfully!");
+      res.render("home");
     })
     .catch(err => {
+      alert("Please enter the question...");
       console.log(err);
-      res.status(500).json({
-        error: err
-      });
     });
 };
 
@@ -29,7 +26,7 @@ exports.get_options = (req, res) => {
       res.json({
         totalOptions: result.length,
         message: "Available options!",
-        Options: result
+        options: result
       });
     })
     .catch(err => {
@@ -60,21 +57,19 @@ exports.update_option = (req, res) => {
     { _id: id },
     {
       $push: {
-        options: req.body.options
+        options: req.body.option
       }
     },
     { new: true }
   )
     .exec()
     .then(result => {
-      res.status(200).json({
-        message: "Option updated!!"
-      });
+      alert("option posted successfully!");
+      console.log(result);
+      res.render("home");
     })
     .catch(err => {
       console.log(err);
-      res.status(500).json({
-        error: err
-      });
+      alert("Please insert missing fields!");
     });
 };
