@@ -116,6 +116,48 @@
             }
           );
         });
+        $("#btn_2").click(() => {
+          $.get(
+            "https://messenger-webchat.herokuapp.com/type",
+            (data, status) => {
+              console.log(data);
+              data.Types.forEach(dt => {
+                $("#ttype").append(
+                  "<tr>" +
+                    "<td>" +
+                    dt._id +
+                    "</td>" +
+                    "<td>" +
+                    dt.types +
+                    "</td>" +
+                    "<td>" +
+                    dt.optionId +
+                    "</td>" +
+                    "<td>" +
+                    dt.optionId +
+                    "</td>" +
+                    "</tr>"
+                );
+              });
+            }
+          );
+        });
+
+        // process the form
+        $("#ajax-form").submit(function(event) {
+          event.preventDefault();
+          data = {
+            optionId: document.getElementById("optionId").value,
+            option: document.getElementById("option").value
+            //add other properties similarly
+          };
+          console.log(data.optionId, data.option);
+          $.ajax({
+            type: "PATCH",
+            url: "https://messenger-webchat.herokuapp.com/optionUpdate",
+            data: data
+          });
+        });
       });
       window.onscroll = function() {
         myFunction();

@@ -52,24 +52,26 @@ exports.delete_option = (req, res) => {
     });
 };
 exports.update_option = (req, res) => {
-  const id = req.body.id;
+  const id = req.body.optionId;
+  const option = req.body.option;
+  console.log(req.body);
   Option.updateMany(
     { _id: id },
     {
       $push: {
-        options: req.body.option
+        options: option
       }
     },
     { new: true }
   )
     .exec()
     .then(result => {
-      alert("option posted successfully!");
-      console.log(result);
+      alert("option updated successfully!");
       res.render("home");
+      console.log(result);
     })
     .catch(err => {
       console.log(err);
-      alert("Please insert missing fields!");
+      alert("Please insert missing fields or correct Id!");
     });
 };

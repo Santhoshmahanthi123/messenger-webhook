@@ -5,41 +5,41 @@
     <div class="container">
       <form method="POST" action="/type">
         <div class="form-group">
-          
-          
           <center>
-              <label for="formGroupExampleInput"
-              >Please enter your optionId here:</label>
-          <input
-            type="text"
-            class="form-control"
-            style="width:auto"
-            id="optionId"
-            name="optionId"
-            placeholder="Enter your optionId"
-          />
-          <label for="formGroupExampleInput"
-              >Please enter your option here:</label>
-          <input
-            type="text"
-            class="form-control"
-            style="width:auto"
-            id="option"
-            name="option"
-            placeholder="Enter your option"
-          />
-          <label for="formGroupExampleInput" class="text-center"
-            >Please enter your type here:</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            style="width:auto"
-            id="type"
-            name="types"
-            placeholder="Enter type"
-          />
-        </center>
+            <label for="formGroupExampleInput"
+              >Please enter your optionId here:</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              style="width:auto"
+              id="optionId"
+              name="optionId"
+              placeholder="Enter your optionId"
+            />
+            <label for="formGroupExampleInput"
+              >Please enter your option here:</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              style="width:auto"
+              id="option"
+              name="option"
+              placeholder="Enter your option"
+            />
+            <label for="formGroupExampleInput" class="text-center"
+              >Please enter your type here:</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              style="width:auto"
+              id="type"
+              name="types"
+              placeholder="Enter type"
+            />
+          </center>
         </div>
         <div>
           <button type="submit" class="btn btn-success">Submit type</button>
@@ -47,7 +47,6 @@
         <hr class="my-4" />
       </form>
       <div style="width:inherit align-self- auto;" class="container">
-        
         <div class="text-center">
           Please click the button to see option Ids and options:
           <button type="submit" id="btn_1" class="btn btn-primary">
@@ -60,19 +59,41 @@
           border="1"
           class="table table-striped table-bordered table-hover"
         >
-        <thead>
-          <tr>
-            <th>OptionId</th>
-            <th>Options</th>
-            <th>QuestionId</th>
-          </tr>
-        </thead>
-          <tbody id="topt">
-            
-          </tbody>
+          <thead>
+            <h3>Option form</h3>
+            <tr>
+              <th>OptionId</th>
+              <th>Options</th>
+              <th>QuestionId</th>
+            </tr>
+          </thead>
+          <tbody id="topt"></tbody>
         </table>
       </div>
-    </div>
+      <hr class="my-4" />
+      <div class="text-center">
+        Please click the button to see types:
+        <button type="submit" id="btn_2" class="btn btn-primary">
+          Get types
+        </button>
+      </div>
+      <hr class="my-4" />
+      <table
+        id="type"
+        border="1"
+        class="table table-striped table-bordered table-hover"
+      >
+        <thead>
+          <h3>Types form</h3>
+          <tr>
+            <th>TypeId</th>
+            <th>Type</th>
+            <th>OptionId</th>
+            <th>Option</th>
+          </tr>
+        </thead>
+        <tbody id="ttype"></tbody>
+      </table>
     </div>
   </div>
 </div>
