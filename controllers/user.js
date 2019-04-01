@@ -138,7 +138,6 @@ exports.users_get_all = (req, res, next) => {
 };
 exports.update_user = (req, res) => {
   const id = req.body.userId;
-
   User.updateMany(
     { _id: id },
     {
@@ -152,18 +151,13 @@ exports.update_user = (req, res) => {
   )
     .exec()
     .then(result => {
-      //   alert("users updated successfully!");
-      res.json({
-        message: "User updated successfully!",
-        user: result
-      });
+      alert("user updated successfully!");
+      res.render("home");
       console.log(result);
     })
     .catch(err => {
       console.log(err);
-      res.json({
-        message: "User is not updated!",
-        response: err
-      });
+      alert("please enter missing fields or correct details!")
     });
+
 };

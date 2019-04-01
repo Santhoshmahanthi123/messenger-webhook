@@ -48,6 +48,9 @@
           <li>
             <a href="/login" style="margin-right:20px">Login</a>
           </li>
+          <li>
+            <a href="/userUpdate" style="margin-right:20px">Update user</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -147,6 +150,21 @@
         $.ajax({
           type: "PATCH",
           url: "https://messenger-webchat.herokuapp.com/optionUpdate",
+          data: data
+        });
+      });
+      $("#ajax-form-user").submit(function (event) {
+        event.preventDefault();
+        data = {
+          userId: document.getElementById("userId").value,
+          name: document.getElementById("name").value,
+          email: document.getElementById("email").value,
+          mobile: document.getElementById("mobile").value,
+        };
+        console.log(data.userId);
+        $.ajax({
+          type: "PATCH",
+          url: "https://messenger-webchat.herokuapp.com/userUpdate",
           data: data
         });
       });

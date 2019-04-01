@@ -66,6 +66,9 @@ app.post("/question", question_controller.create_question, (req, res) => {
 app.get("/option", option_controller.get_options, (req, res) => {
   res.render("optionUpdateForm");
 });
+app.get("/userUpdate", (req, res) => {
+  res.render("userUpdateForm");
+});
 app.get("/question", question_controller.get_questions);
 app.delete("/question", question_controller.delete_question);
 app.patch("/question", question_controller.update_question);
@@ -83,7 +86,7 @@ app.patch("/type", type_controller.update_type);
 app.post("/signup", user_controller.user_signup);
 app.post("/login", user_controller.user_login);
 app.get("/user", user_controller.users_get_all);
-app.patch("/user", user_controller.update_user);
+app.patch("/userUpdate", user_controller.update_user);
 app.delete("/user", user_controller.user_delete);
 // Creates the endpoint for our webhook
 app.post("/webhook", (req, res) => {
