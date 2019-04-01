@@ -5,30 +5,14 @@
     <div class="container">
       <form method="POST" action="/option">
         <div class="form-group">
-          <label for="formGroupExampleInput"
-            >Please enter your QuestionId here:</label
-          >
-          <center> <input
-            type="text"
-            class="form-control"
-            style="width:auto "
-            id="formGroupExampleInput"
-            placeholder="Enter questionId"
-            name="questionId"
-          /></center>
-         
-          <label for="formGroupExampleInput"
-            >Please enter your option here:</label
-          >
-          <center> <input
-            type="text"
-            class="form-control"
-            style="width:auto"
-            id="formGroupExampleInput"
-            placeholder="Enter option"
-            name="options"
-          /></center>
-         
+          <label for="formGroupExampleInput">Please enter your QuestionId here:</label>
+          <center> <input type="text" class="form-control" style="width:auto " id="formGroupExampleInput"
+              placeholder="Enter questionId" name="questionId" /></center>
+
+          <label for="formGroupExampleInput">Please enter your option here:</label>
+          <center> <input type="text" class="form-control" style="width:auto" id="formGroupExampleInput"
+              placeholder="Enter option" name="options" /></center>
+
         </div>
         <div class="text-center">
           <button type="submit" class="btn btn-success">Submit option</button>
@@ -36,62 +20,54 @@
         <hr class="my-4" />
       </form>
       <div style="width:inherit align-self- auto;" class="container">
-        
-          Please click the button to see question Ids and questions:
-          <button type="submit" id="btn" class="btn btn-secondary">
-            Get questions
-          </button>
-          <div class="container-fluid">
-              <h2>Questions table</h2>
-              <table
-              id="question"
-              border="1"
-              class="table table-striped table-bordered table-hover"
-            >
-              <thead>
-                <tr>
-                  <th>QuestionId</th>
-                  <th>Question</th>
-                </tr>
-              </thead>
-            
-              <tbody id="tdata">
-                
-              </tbody>
-            </table>
-            </div>
-            <hr class="my-4" />
-         Please click the button to see option Ids and options:
-            <button type="submit" id="btn_1" class="btn btn-secondary">
-              Get options
-            </button>
-     
-        
+
+        Please click the button to see question Ids and questions:
+        <button type="submit" id="btn" class="btn btn-secondary">
+          Get questions
+        </button>
+        <div class="container-fluid">
+          <h2>Questions table</h2>
+          <table id="question" border="1" class="table table-striped table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>QuestionId</th>
+                <th>Question</th>
+              </tr>
+            </thead>
+
+            <tbody id="tdata">
+
+            </tbody>
+          </table>
+        </div>
+        <hr class="my-4" />
+        Please click the button to see option Ids and options:
+        <button type="submit" id="btn_1" class="btn btn-secondary">
+          Get options
+        </button>
+
+
         <div class="container-fluid">
           <h3>Options table</h3>
-          <table
-          id="option"
-          border="1"
-          class="table table-striped table-bordered table-hover"
-        >
-          <thead>
-            <tr>
-              <th>Options</th>
-              <th>OptionId</th>
-              <th>QuestionId</th>
-            </tr>
-          </thead>
-        
-          <tbody id="topt">
-            
-          </tbody>
-        </table>
+          <table id="option" border="1" class="table table-striped table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Options</th>
+                <th>OptionId</th>
+                <th>QuestionId</th>
+              </tr>
+            </thead>
+
+            <tbody id="topt">
+
+            </tbody>
+          </table>
         </div>
-        
+
       </div>
     </div>
-    </div>
   </div>
+</div>
 </div>
 
 <% include partials/footer %>

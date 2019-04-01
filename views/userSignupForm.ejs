@@ -1,0 +1,42 @@
+<% include partials/header %>
+<div class="text-center">
+  <div style="background:rgb(202, 121, 15)!important" class="jumbotron">
+    <h1>Please post your Options here</h1>
+    <div class="container">
+      <form method="POST" action="/signup">
+        <center>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Please enter your name here:</label>
+            <input type="text" name="name" style="width: 50%" class="form-control my-input" id="name"
+              placeholder="Name">
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Please enter your email here:</label>
+            <input type="email" name="email" style="width: 50%" class="form-control my-input" id="email"
+              placeholder="Email">
+
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Please enter your password here:</label>
+            <input type="password" name="password" style="width: 50%" class="form-control my-input" id="password"
+              placeholder="Password">
+
+          </div>
+
+          <div class="form-group">
+            <label for="formGroupExampleInput">Please enter your phone number here:</label>
+            <input type="Number" min="0" name="mobile" style="width: 50%" class="form-control my-input" id="mobile"
+              placeholder="Number">
+
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-success">Create account</button>
+          </div>
+          <hr class="my-4" />
+        </center>
+      </form>
+    </div>
+  </div>
+</div>
+<% include partials/footer %>

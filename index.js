@@ -20,6 +20,7 @@ const Option = require("./models/options");
 const Type = require("./models/types");
 const webhook = require("./controllers/webhook");
 const ejs = require("ejs");
+const user_controller = require("./controllers/user");
 app.use("/public", express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -28,7 +29,12 @@ app.use(methodOverride("_method"));
 mongoose.connect(DBURL, {
   useNewUrlParser: true
 });
-
+app.get("/signup", (req, res) => {
+  res.render("userSignupForm");
+});
+app.get("/login", (req, res) => {
+  res.render("loginForm");
+});
 // routes
 app.get("/", (req, res) => {
   res.render("home");
@@ -53,9 +59,7 @@ app.get("/optionForm", (req, res) => {
 app.get("/typesForm", (req, res) => {
   res.render("typesForm");
 });
-// app.get("/optionUpdateForm", (req, res) => {
-//   res.render("optionUpdateForm");
-// });
+
 app.post("/question", question_controller.create_question, (req, res) => {
   res.redirect("/");
 });
@@ -76,6 +80,11 @@ app.post("/type", type_controller.create_type);
 app.get("/type", type_controller.get_types);
 app.delete("/type", type_controller.delete_type);
 app.patch("/type", type_controller.update_type);
+app.post("/signup", user_controller.user_signup);
+app.post("/login", user_controller.user_login);
+app.get("/user", user_controller.users_get_all);
+app.patch("/user", user_controller.update_user);
+app.delete("/user", user_controller.user_delete);
 // Creates the endpoint for our webhook
 app.post("/webhook", (req, res) => {
   // Parse the request body from the POST
@@ -83,7 +92,7 @@ app.post("/webhook", (req, res) => {
   // Check the webhook event is from a Page subscription
   if (body.object === "page") {
     // Iterate over each entry - there may be multiple if batched
-    body.entry.forEach(function(entry) {
+    body.entry.forEach(function (entry) {
       // Get the webhook event. entry.messaging is an array, but
       // will only ever contain one event, so we get index 0
       // let webhook_event = entry.messaging[0];
