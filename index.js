@@ -20,6 +20,7 @@ const Option = require("./models/options");
 const Type = require("./models/types");
 const webhook = require("./controllers/webhook");
 const ejs = require("ejs");
+const checkAuth = require("./middleware/check-auth")
 const FroalaEditor = require("wysiwyg-editor-node-sdk");
 const user_controller = require("./controllers/user");
 app.use("/public", express.static(path.join(__dirname, "public")));
@@ -36,20 +37,25 @@ app.get("/signup", (req, res) => {
 app.get("/login", (req, res) => {
   res.render("loginForm");
 });
+
+app.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/');
+});
 // routes
 app.get("/", (req, res) => {
   res.render("home");
 });
-app.get("/questionForm", (req, res) => {
+app.get("/questionForm", checkAuth, (req, res) => {
   res.render("questionForm");
 });
-app.get("/optionUpdate", (req, res) => {
+app.get("/optionUpdate", checkAuth, (req, res) => {
   res.render("optionUpdateForm");
 });
-app.get("/textEditor", (req, res) => {
+app.get("/textEditor", checkAuth, (req, res) => {
   res.render("textEditor");
 });
-app.get("/optionForm", (req, res) => {
+app.get("/optionForm", checkAuth, (req, res) => {
   Question.find()
     .exec()
     .then(res => {
@@ -60,7 +66,7 @@ app.get("/optionForm", (req, res) => {
     });
   res.render("optionForm");
 });
-app.get("/typesForm", (req, res) => {
+app.get("/typesForm", checkAuth, (req, res) => {
   res.render("typesForm");
 });
 
@@ -70,7 +76,7 @@ app.post("/question", question_controller.create_question, (req, res) => {
 app.get("/option", option_controller.get_options, (req, res) => {
   res.render("optionUpdateForm");
 });
-app.get("/userUpdate", (req, res) => {
+app.get("/userUpdate", checkAuth, (req, res) => {
   res.render("userUpdateForm");
 });
 app.get("/question", question_controller.get_questions);
