@@ -31,16 +31,15 @@ app.use(methodOverride("_method"));
 mongoose.connect(DBURL, {
   useNewUrlParser: true
 });
-app.get("/signup", (req, res) => {
+app.get("/signup", checkAuth, (req, res) => {
   res.render("userSignupForm");
 });
 app.get("/login", (req, res) => {
   res.render("loginForm");
 });
-
-app.get('/logout', (req, res) => {
+app.get("/logout", (req, res) => {
   req.logout();
-  res.redirect('/');
+  res.redirect("/")
 });
 // routes
 app.get("/", (req, res) => {
@@ -52,7 +51,7 @@ app.get("/questionForm", checkAuth, (req, res) => {
 app.get("/optionUpdate", checkAuth, (req, res) => {
   res.render("optionUpdateForm");
 });
-app.get("/textEditor", checkAuth, (req, res) => {
+app.get("/textEditor", (req, res) => {
   res.render("textEditor");
 });
 app.get("/optionForm", checkAuth, (req, res) => {
@@ -76,7 +75,7 @@ app.post("/question", question_controller.create_question, (req, res) => {
 app.get("/option", option_controller.get_options, (req, res) => {
   res.render("optionUpdateForm");
 });
-app.get("/userUpdate", checkAuth, (req, res) => {
+app.get("/userUpdate", (req, res) => {
   res.render("userUpdateForm");
 });
 app.get("/question", question_controller.get_questions);

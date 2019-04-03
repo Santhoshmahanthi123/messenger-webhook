@@ -11,7 +11,7 @@ exports.create_question = (req, res) => {
     .then(result => {
       console.log(result);
       alert("Question posted successfully!");
-      res.render("home");
+      res.render("questionForm");
     })
     .catch(err => {
       alert("Please enter the question...");

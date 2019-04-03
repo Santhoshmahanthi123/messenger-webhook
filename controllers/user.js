@@ -61,7 +61,7 @@ exports.user_login = (req, res, next) => {
           return alert("Please enter correct user name and password!");
         }
         if (result) {
-          const token = jwt.sign(
+          exports.token = token = jwt.sign(
             {
               name: user[0].name,
               userId: user[0]._id
@@ -72,7 +72,7 @@ exports.user_login = (req, res, next) => {
             }
           );
           res.render("home");
-          console.log("Authentication successful");
+          console.log("Authentication successful: token: ", token);
           return alert("loggedin successfully!");
         }
 
