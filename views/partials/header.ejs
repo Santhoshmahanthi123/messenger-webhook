@@ -8,6 +8,18 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link href='https://cdn.jsdelivr.net/npm/froala-editor@2.9.3/css/froala_editor.min.css' rel='stylesheet'
+    type='text/css' />
+  <link href='https://cdn.jsdelivr.net/npm/froala-editor@2.9.3/css/froala_style.min.css' rel='stylesheet'
+    type='text/css' />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+
+  <!-- Include JS file. -->
+  <script type='text/javascript'
+    src='https://cdn.jsdelivr.net/npm/froala-editor@2.9.3/js/froala_editor.min.js'></script>
   <style>
     .sticky {
       position: fixed;
@@ -174,12 +186,44 @@
     };
     var navbar = document.getElementById("navbar");
     var sticky = navbar.offsetTop;
+    var showingSourceCode = false;
+    var isInEditMode = true;
 
     function myFunction() {
       if (window.pageYOffset >= sticky) {
         navbar.classList.add("sticky");
       } else {
         navbar.classList.remove("sticky");
+      }
+    }
+    function enableEditMode() {
+      richTextField.document.designMode = "on";
+    }
+    function execCmd(command) {
+      richTextField.document.execCommand(command, false, null);
+    }
+    function execCommandWithArg(command, arg) {
+      richTextField.document.execCommand(command, false, arg);
+    }
+    function toggleSource() {
+      if (showingSourceCode) {
+        richTextField.document.getElementById('#editor-body')[0].innerHtml = richTextField.document.getElementById('#editor-body')[0].textContent;
+        showingSourceCode = false;
+      }
+      else {
+        richTextField.document.getElementById('#editor-body')[0].textContent = richTextField.document.getElementById('#editor-body')[0].innerHtml;
+
+        showingSourceCode = true;
+      }
+    }
+    function toggleEdit() {
+      if (isInEditMode) {
+        richTextField.document.designMode = "off";
+        isInEditMode = false;
+      }
+      else {
+        richTextField.document.designMode = "on";
+        isInEditMode = true;
       }
     }
   </script>

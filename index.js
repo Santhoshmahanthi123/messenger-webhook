@@ -20,6 +20,7 @@ const Option = require("./models/options");
 const Type = require("./models/types");
 const webhook = require("./controllers/webhook");
 const ejs = require("ejs");
+const FroalaEditor = require("wysiwyg-editor-node-sdk");
 const user_controller = require("./controllers/user");
 app.use("/public", express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -44,6 +45,9 @@ app.get("/questionForm", (req, res) => {
 });
 app.get("/optionUpdate", (req, res) => {
   res.render("optionUpdateForm");
+});
+app.get("/textEditor", (req, res) => {
+  res.render("textEditor");
 });
 app.get("/optionForm", (req, res) => {
   Question.find()
