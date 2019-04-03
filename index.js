@@ -75,7 +75,7 @@ app.post("/question", question_controller.create_question, (req, res) => {
 app.get("/option", option_controller.get_options, (req, res) => {
   res.render("optionUpdateForm");
 });
-app.get("/userUpdate", (req, res) => {
+app.get("/userUpdate", checkAuth, (req, res) => {
   res.render("userUpdateForm");
 });
 app.get("/question", question_controller.get_questions);
