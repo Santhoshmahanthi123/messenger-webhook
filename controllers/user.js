@@ -71,7 +71,7 @@ exports.user_login = (req, res, next) => {
               expiresIn: "1h"
             }
           );
-          res.render("home");
+          res.render("landing");
           console.log("Authentication successful: token: ", token);
           return alert("loggedin successfully!");
         }

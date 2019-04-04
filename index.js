@@ -31,14 +31,16 @@ app.use(methodOverride("_method"));
 mongoose.connect(DBURL, {
   useNewUrlParser: true
 });
-app.get("/signup", checkAuth, (req, res) => {
+app.get("/signup", (req, res) => {
   res.render("userSignupForm");
 });
 app.get("/login", (req, res) => {
   res.render("loginForm");
 });
+app.get("/landing", (req, res) => {
+  res.render("landing");
+})
 app.get("/logout", (req, res) => {
-  req.logout();
   res.redirect("/")
 });
 // routes
