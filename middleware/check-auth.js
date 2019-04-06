@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
     // console.log(out)
 
     const token = user_controller.token;
-    console.log(token);
+    // console.log(token);
     const decoded = jwt.verify(token, process.env.JWTKEY);
     req.userData = decoded;
     next();
